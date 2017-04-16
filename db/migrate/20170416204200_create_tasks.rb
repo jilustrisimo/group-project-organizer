@@ -5,7 +5,7 @@ class CreateTasks < ActiveRecord::Migration[5.0]
       t.text :content
       t.datetime :due_date
       t.boolean :completed
-      t.references :assignment, foreign_key: true
+      t.references :assignment, polymorphic: true, index: true
 
       t.timestamps
     end
