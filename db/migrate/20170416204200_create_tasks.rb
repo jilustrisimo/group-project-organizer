@@ -4,7 +4,7 @@ class CreateTasks < ActiveRecord::Migration[5.0]
       t.string :title
       t.text :content
       t.datetime :due_date
-      t.boolean :completed
+      t.boolean :completed, default: false
       t.references :assignment, polymorphic: true, index: true
 
       t.timestamps
