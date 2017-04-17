@@ -26,25 +26,29 @@
     <%= f.date_field :due_date %>
   </div>
 
-  <!--<div class="field">
+  <div class="field">
    <legend>Tasks</legend>
-    <% f.fields_for :tasks do |task_builder| %>
-    <fieldset>
-      <p>
-        <%= task_builder.label :title %>
-        <%= task_builder.text_field :title %>
-      </p>
-      <p>
-        <%= task_builder.label :content %>
-        <%= task_builder.text_area :content %>
-      </p>
-      <p>
-        <%= task_builder.label :due_date %>
-        <%= task_builder.date_field :due_date %>
-      </p>
-    </fieldset>
+   <% project.tasks.each do |task| %>
+        <%# binding.pry %>
+      <% f.fields_for :tasks, task do |task_builder| %>
+      <% binding.pry %>
+      <fieldset>
+        <p>
+          <%= task_builder.label :title %>
+          <%= task_builder.text_field :title %>
+        </p>
+        <p>
+          <%= task_builder.label :content %>
+          <%= task_builder.text_area :content %>
+        </p>
+        <p>
+          <%= task_builder.label :due_date %>
+          <%= task_builder.date_field :due_date %>
+        </p>
+      </fieldset>
+      <% end %>
     <% end %>
-  </div>-->
+  </div>
 
   <div class="actions">
     <%= f.submit %>
