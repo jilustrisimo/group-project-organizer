@@ -18,7 +18,7 @@ end
                  due_date: Faker::Time.forward(30))
 end
 
-7.times do
+10.times do
   Task.create(title: Faker::Hipster.sentence(3),
                  content: Faker::Lorem.paragraph,
                  due_date: Faker::Time.forward(30))

@@ -8,5 +8,5 @@ class User < ApplicationRecord
 
   has_many :project_teams
   has_many :projects, through: :project_teams
-  has_many :tasks, as: :assignment
+  has_many :tasks
 end
