@@ -21,15 +21,9 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
-      else
-        format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
-    end
+    @project.assign_attributes(project_params)
+    notice = 'Project was successfully updated.'
+    @project.save ? (redirect_to @project, notice: notice) : (render :edit)
   end
 
   def destroy
@@ -55,8 +49,4 @@ class ProjectsController < ApplicationController
                                     %i[id title content due_date completed])
   end
 
-  # def setup_project(project)
-  #   project.tasks ||= Task.new
-  #   project
-  # end
 end
