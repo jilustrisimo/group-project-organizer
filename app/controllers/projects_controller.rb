@@ -16,12 +16,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-
-    if @project.save
-      redirect_to @project, notice: 'Project was successfully created.'
-    else
-      render :new
-    end
+    notice = 'Project was successfully created.'
+    @project.save ? (redirect_to @project, notice: notice) : (render :new)
   end
 
   def update
