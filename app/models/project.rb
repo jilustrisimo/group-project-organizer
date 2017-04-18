@@ -7,6 +7,6 @@ class Project < ApplicationRecord
   validates_presence_of :title, :description, :due_date
 
   def tasks_attributes=(tasks_attributes)
-    tasks_attributes.values.each { |task_attributes| tasks.build(task_attributes) } if task_attributes.present?
+    tasks_attributes.values.each { |task_attributes| tasks.build(task_attributes) } if tasks_attributes.present?
   end
 end
