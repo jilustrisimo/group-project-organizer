@@ -27,11 +27,10 @@
   </div>
 
   <div class="field">
-   <legend>Tasks</legend>
-   <% project.tasks.each do |task| %>
-        <%# binding.pry %>
-      <% f.fields_for :tasks, task do |task_builder| %>
-      <% binding.pry %>
+   <legend>Create a new task</legend>
+
+      <%= f.fields_for :tasks, Task.new do |task_builder| %>
+      <%# binding.pry %>
       <fieldset>
         <p>
           <%= task_builder.label :title %>
@@ -47,7 +46,7 @@
         </p>
       </fieldset>
       <% end %>
-    <% end %>
+
   </div>
 
   <div class="actions">
