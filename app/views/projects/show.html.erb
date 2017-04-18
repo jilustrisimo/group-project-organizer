@@ -21,13 +21,14 @@
 </p>
 
 <% @project.tasks.each do |task| %>
-  <a href="<%#= edit_project_task_path %>" class="clickable-cells">
-    <div class="tasks">
-      <p><b><%= task.title %></b></p>
-      <p><%= task.content %></p>
-      <% if task.user %>
-        <p>Assigned to: <%= task.user.username %></p>
-      <% end %>
+  <%= link_to edit_project_task_path(@project, task) do %>
+    <p><b><%= task.title %></b></p>
+    <p><%= task.content %></p>
+    <% if task.user %>
+      <p>Assigned to: <%= task.user.username %></p>
+    <% end %>
+    <p>Complete by: <%= task.due_date %></p>
+  <% end %>
 <% end %>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
