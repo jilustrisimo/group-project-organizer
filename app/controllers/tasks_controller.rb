@@ -2,10 +2,6 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :set_project
 
-  def index
-    @tasks = @project.tasks
-  end
-
   def show
   end
 
@@ -18,8 +14,12 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    notice = 'Task was successfully created.'
-    @task.save ? (redirect_to project_task_path, notice: notice) : (render :new)
+
+    if @project.tasks.build(@task_params, &:save)
+      redirect_to @project, notice: 'Task was successfully created.'
+    else
+      render :new
+    end
   end
 
   def update

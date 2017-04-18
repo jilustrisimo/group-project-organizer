@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  # resources :tasks
+
   resources :projects do
-    resources :tasks
+    resources :tasks, except: :index
   end
   devise_for :users
   root 'welcome#home'
