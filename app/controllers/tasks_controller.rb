@@ -2,20 +2,18 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :set_project
 
-  def show
-  end
+  def show() end
 
   def new
     @task = Task.new
   end
 
-  def edit
-  end
+  def edit() end
 
   def create
     @task = Task.new(task_params)
 
-    if @project.tasks.build(@task_params, &:save)
+    if @project.tasks.build(@task_params).save
       redirect_to @project, notice: 'Task was successfully created.'
     else
       render :new
