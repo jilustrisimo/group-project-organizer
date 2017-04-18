@@ -11,9 +11,7 @@ class TasksController < ApplicationController
   def edit() end
 
   def create
-    @task = Task.new(task_params)
-
-    if @project.tasks.build(@task_params).save
+    if @project.tasks.build(task_params).save
       redirect_to @project, notice: 'Task was successfully created.'
     else
       render :new
