@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= f.label :due_date %>
-    <%= f.date_field :due_date %>
+    <%= f.date_field :due_date, min: Date.today %>
   </div>
 
 <% if params[:action] == "new" %>
@@ -41,7 +41,7 @@
       </p>
       <p>
         <%= task_builder.label :due_date %>
-        <%= task_builder.date_field :due_date %>
+        <%= task_builder.date_field :due_date, min: Date.today %>
       </p>
     <% end %>
   </div>
