@@ -12,7 +12,7 @@
 
 <p>
   <strong>Due date:</strong>
-  <%= @project.due_date %>
+  <%= @project.due_date.strftime('%A %e %B %Y') %>
 </p>
 
 <p>
@@ -27,7 +27,7 @@
     <% if task.user %>
       <p>Assigned to: <%= task.user.username %></p>
     <% end %>
-    <p>Complete by: <%= task.due_date %></p>
+    <p>Complete by: <%= task.due_date.strftime('%A %e %B %Y') %></p>
   <% end %>
     <%= button_to  "Delete Task", project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure you want to delete this task?' } %>
 <% end %>

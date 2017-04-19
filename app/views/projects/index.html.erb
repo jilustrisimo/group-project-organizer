@@ -18,11 +18,11 @@
       <tr>
         <td><%= project.title %></td>
         <td><%= project.description %></td>
-        <td><%= project.due_date %></td>
+        <td><%= project.due_date.strftime('%A %e %B %Y') %></td>
         <td><%= project.completed %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure you want to delete this project and all its tasks?' } %></td>
       </tr>
     <% end %>
   </tbody>
