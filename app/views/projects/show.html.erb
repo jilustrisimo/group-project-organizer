@@ -1,26 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+<div class="center-align">
+  <p>
+    <strong>Title:</strong>
+    <%= @project.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @project.description %>
+  </p>
 
-<p>
-  <strong>Due date:</strong>
-  <%= @project.due_date.strftime('%A %e %B %Y') %>
-</p>
-
-<p>
-  <strong>Completed:</strong>
-  <%= @project.completed %>
-</p>
+  <p>
+    <strong>Due date:</strong>
+    <%= @project.due_date.strftime('%A %e %B %Y') %>
+  </p>
+</div>
 
 <% @project.tasks.each do |task| %>
+  <div class="card-panel hoverable center-align">
   <%= link_to edit_project_task_path(@project, task) do %>
     <p><b><%= task.title %></b></p>
     <p><%= task.content %></p>
@@ -30,6 +28,7 @@
     <p>Complete by: <%= task.due_date.strftime('%A %e %B %Y') %></p>
   <% end %>
     <%= button_to  "Delete Task", project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure you want to delete this task?' } %>
+  </div>
 <% end %>
 
 <%= link_to 'Edit Project', edit_project_path %> |
