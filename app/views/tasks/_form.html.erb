@@ -11,27 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="input-field col s8">
+    <%= f.text_field :title, 'data-length': '23' %>
     <%= f.label :title %>
-    <%= f.text_field :title %>
   </div>
 
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-  </div>
-
-  <div class="field">
+  <div class="input-field col s4">
+    <%= f.date_field :due_date, class: 'datepicker', min: Date.today %>
     <%= f.label :due_date %>
-    <%= f.date_field :due_date, min: Date.today %>
   </div>
 
-  <div class="field">
-    <%= f.label :completed %>
-    <%= f.check_box :completed %>
+  <div class="input-field col s12">
+    <%= f.text_area :content, class: 'materialize-textarea', 'data-length': '500' %>
+    <%= f.label :content %>
   </div>
 
-  <div class="actions">
+  <div class="input-field col s1">
     <%= f.submit %>
+    <br><br>
   </div>
 <% end %>
