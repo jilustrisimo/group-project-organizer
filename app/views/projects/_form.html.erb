@@ -28,8 +28,8 @@
 
 <% if params[:action] == "new" %>
 
-  <%= f.fields_for :tasks, project.tasks.build do |task_builder| %>
-    <ul class="collapsible" data-collapsible="accordion">
+  <ul class="collapsible" data-collapsible="expandable">
+    <%= f.fields_for :tasks, 3.times{project.tasks.build} do |task_builder| %>
       <li>
         <div class="collapsible-header"><a class="waves-effect waves-light btn teal accent-4">Create a New Task</a><smaller style="color:red">  (optional)</smaller></div>
           <div class="collapsible-body">
@@ -49,11 +49,11 @@
             </div>
           </div>
       </li>
-    </ul>
-  <% end %>
+    <% end %>
+  </ul>
 <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'waves-effect waves-light btn teal accent-4' %>
   </div>
 <% end %>
