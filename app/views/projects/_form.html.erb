@@ -11,19 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %>
+  <div class="input-field col s8">
+    <%= f.label :title, 'data-length': '23' %>
     <%= f.text_field :title %>
   </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+  <div class="input-field col s4">
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date, class: 'datepicker', min: Date.today %>
   </div>
 
-  <div class="field">
-    <%= f.label :due_date %>
-    <%= f.date_field :due_date, min: Date.today %>
+  <div class="input-field col s12">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'materialize-textarea', 'data-length': '500' %>
   </div>
 
 <% if params[:action] == "new" %>
