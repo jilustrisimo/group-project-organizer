@@ -8,4 +8,6 @@ $(() => {
   $('.fixed-action-btn').click(() => {
     window.history.back()
   })
+
+  Materialize.updateTextFields()
 })
