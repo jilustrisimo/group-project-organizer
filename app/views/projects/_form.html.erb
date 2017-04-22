@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="input-field col s8">
-    <%= f.label :title, 'data-length': '23' %>
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
 
@@ -27,24 +27,30 @@
   </div>
 
 <% if params[:action] == "new" %>
-  <div class="field">
-   <legend>Create a new task</legend>
 
-    <%= f.fields_for :tasks, project.tasks.build do |task_builder| %>
-      <p>
-        <%= task_builder.label :title %>
-        <%= task_builder.text_field :title %>
-      </p>
-      <p>
-        <%= task_builder.label :content %>
-        <%= task_builder.text_area :content %>
-      </p>
-      <p>
-        <%= task_builder.label :due_date %>
-        <%= task_builder.date_field :due_date, min: Date.today %>
-      </p>
-    <% end %>
-  </div>
+  <%= f.fields_for :tasks, project.tasks.build do |task_builder| %>
+    <ul class="collapsible" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header"><a class="waves-effect waves-light btn teal accent-4">Create a New Task</a><smaller style="color:red">  (optional)</smaller></div>
+          <div class="collapsible-body">
+            <div class="input-field">
+              <%= task_builder.text_field :title, 'data-length': '23' %>
+              <%= task_builder.label :title %>
+            </div>
+
+            <div class="input-field">
+              <%= task_builder.date_field :due_date, class: 'datepicker', min: Date.today %>
+              <%= task_builder.label :due_date %>
+            </div>
+
+            <div class="input-field">
+              <%= task_builder.text_area :content, class: 'materialize-textarea', 'data-length': '500' %>
+              <%= task_builder.label :content %>
+            </div>
+          </div>
+      </li>
+    </ul>
+  <% end %>
 <% end %>
 
   <div class="actions">
