@@ -22,7 +22,7 @@ class TasksController < ApplicationController
 
     @task.assign_attributes(task_params)
     notice = 'Task was successfully updated.'
-    @task.save ? (redirect_to project_task_path, notice: notice) : (render :edit)
+    @task.save ? (redirect_to @project, notice: notice) : (render :edit)
   end
 
   def destroy
