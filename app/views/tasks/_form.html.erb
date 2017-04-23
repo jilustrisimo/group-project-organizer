@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="input-field col s8">
-    <%= f.text_field :title, 'data-length': '23' %>
+    <%= f.text_field :title, 'data-length': '23', required: true %>
     <%= f.label :title %>
   </div>
 
   <div class="input-field col s4">
-    <%= f.date_field :due_date, class: 'datepicker', min: Date.today %>
+    <%= f.date_field :due_date, class: 'datepicker', min: Date.today, required: true %>
     <%= f.label :due_date %>
   </div>
 
   <div class="input-field col s12">
-    <%= f.text_area :content, class: 'materialize-textarea', 'data-length': '500' %>
+    <%= f.text_area :content, class: 'materialize-textarea', 'data-length': '500', required: true %>
     <%= f.label :content %>
   </div>
 
