@@ -5,7 +5,7 @@ $(() => {
     selectYears: 15
   })
 
-  $('.fixed-action-btn').click(() => {
+  $('#back').click(() => {
     window.history.back()
   })
 
