@@ -50,3 +50,14 @@
 .main {
   margin-top: 10px
 }
+
+nav.top-nav {
+    height: 122px;
+    box-shadow: none;
+
+    .brand-logo {
+    line-height: 122px;
+    transform: translateX(-25%);
+    font-size: 48px;
+    }
+}
