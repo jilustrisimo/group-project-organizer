@@ -14,11 +14,13 @@
       <li><div class="divider"></div></li>
       <li><a class="btn-flat waves-effect waves-light waves-teal" id="back"><i class="material-icons">fast_rewind</i>Back</a></li>
 <% else %>
-  <li style="padding-top: 75%">
+  <li><div class="divider" style="padding-top: 75%"></div></li>
+  <li>
     <%= link_to('Login to view projects', new_user_session_path, class: 'center waves-effect waves-light waves-teal') %>
   </li>
   <li class="center">or</li>
   <li>
     <%= link_to('Create an account', new_user_registration_path, class: 'center waves-effect waves-light waves-teal') %>
   </li>
+  <li><div class="divider"></div></li>
 <% end %>
