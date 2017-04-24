@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+  <!--<li>-->
+    <div class="userView">
+      <div class="background">
+          <!--<img src="images/office.jpg">-->
+      </div>
+      <!--<a href="#!user"><img class="circle" src="images/yuna.jpg"></a>-->
+      <a href="#!name"><span class="name"><%= current_user.username %></span></a>
+      <a href="#!name"><span class="name"><%= current_user.email %></span></a>
+      <li>
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'center waves-effect waves-light waves-red') %>
+      </li>
+    </div>
+      <li><div class="divider"></div></li>
+      <li><a class="waves-effect" href="<%= projects_path %>"><i class="material-icons">list</i> View All Projects</a></li>
+      <li><a class="waves-effect" href="<%= projects_path %>"><i class="material-icons">view_day</i> View Your Projects</a></li>
+      <li><div class="divider"></div></li>
+      <li><a class="btn-flat waves-effect waves-light waves-teal" id="back"><i class="material-icons">fast_rewind</i>Back</a></li>
+      <!--<li><a class="waves-effect" href="#!">View All Projects</a></li>-->
+  <!--</li>-->
+
+<% end %>
