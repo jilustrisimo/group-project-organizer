@@ -9,6 +9,9 @@
         <div class="center-align">
           <h3 class="break"><b><%= project.title %></b></h3>
           <p><%= project.description %></p><br>
+            <% unless project.project_leader.nil? %>
+            <p>Created by: <%= project.project_leader.username %></p>
+            <% end %>
           <small class="left"><b>Due Date</b></small><br>
           <p class="left" style="margin: 0"><%= project.due_date.strftime('%A, %e %B %Y') %></p>
 

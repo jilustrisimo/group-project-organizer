@@ -1,14 +1,16 @@
 <%= render partial: 'notice', locals: {notice: notice} %>
 
 <div class="center-align">
-  <p>
-    <strong>Title:</strong>
+  <h3>
     <%= @project.title %>
-  </p>
+  </h3>
+
+  <h5>
+    <%= @project.description %>
+  </h5>
 
   <p>
-    <strong>Description:</strong>
-    <%= @project.description %>
+    Created by: <%= @project.project_leader.username %>
   </p>
 
   <p>
