@@ -1,4 +1,7 @@
 <%= render partial: 'notice', locals: {notice: notice} %>
+<% if flash[:error] %>
+  <p id="error"><i class="material-icons">error</i><%= flash[:error] %></p>
+<% end %>
 
 <div class="center-align">
   <h3>
@@ -10,7 +13,9 @@
   </h5>
 
   <p>
+    <% if @project.project_leader %>
     Created by: <%= @project.project_leader.username %>
+    <% end %>
   </p>
 
   <p>
@@ -34,6 +39,17 @@
   <% end %><br>
   </div>
 <% end %>
-
-<%= link_to 'Edit Project', edit_project_path %> |
-<%= link_to 'Create New Task', new_project_task_path(@project) %>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large teal accent-4">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a href="<%= new_project_task_path(@project) %>" class="btn-floating tooltipped green" data-tooltip="create a new task" data-position="left"><i class="material-icons">note_add</i></a></li>
+      <li><a href="<%= edit_project_path(@project) %>" class="btn-floating tooltipped yellow" data-tooltip="edit project" data-position="left"><i class="material-icons">mode_edit</i></a></li>
+      <li>
+        <%= link_to @project, method: :delete, class: 'btn-floating tooltipped red', 'data-tooltip': "delete project", 'data-position': 'left', data: { confirm: "Are you sure you want to delete #{@project.title} and all its tasks?" } do %>
+              <i class="material-icons">delete</i>
+        <% end %>
+      </li>
+    </ul>
+  </div>
