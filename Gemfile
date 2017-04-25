@@ -38,7 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pry'
 gem 'devise'
 gem 'omniauth-facebook'
-gem 'omniauth-google'
+gem 'omniauth-google-oauth2'
 
 
 
