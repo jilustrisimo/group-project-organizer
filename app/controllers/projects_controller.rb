@@ -28,10 +28,12 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
-      format.json { head :no_content }
+    if check_if_project_leader
+      @project.destroy
+      redirect_to projects_url, notice: 'Project was successfully destroyed.'
+    else
+      flash[:error] = 'Only the project leader can delete a project'
+      redirect_to projects_url
     end
   end
 
@@ -48,6 +50,10 @@ class ProjectsController < ApplicationController
                                     :completed,
                                     tasks_attributes:
                                     %i[id title content due_date completed])
+  end
+
+  def check_if_project_leader
+    @project.project_leader == current_user
   end
 
 end
