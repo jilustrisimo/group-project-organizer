@@ -25,4 +25,16 @@
     <%= link_to('Create an account', new_user_registration_path, class: 'center waves-effect waves-light waves-teal') %>
   </li>
   <li><div class="divider"></div></li>
+  <li><a class="subheader center">Sign in with:</a></li>
+  <li class="center">
+    <%= link_to user_facebook_omniauth_authorize_path do %>
+      <button class="btn" style="background-color: #3b5998"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</button><br>
+    <% end %>
+  </li>
+  <li class="center">
+    <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+      <button class="btn" style="background-color: #d34836"><i class="fa fa-google-plus" aria-hidden="true"></i> <span id="google-plus">google+</span></button>
+    <% end %>
+  </li>
 <% end %>
+
