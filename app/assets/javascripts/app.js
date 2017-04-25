@@ -10,4 +10,6 @@ $(() => {
   })
 
   Materialize.updateTextFields()
+
+  $(".button-collapse").sideNav()
 })
