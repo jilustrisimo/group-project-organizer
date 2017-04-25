@@ -5,14 +5,16 @@
       <a href="#!name"><span class="name"><%= current_user.username %></span></a>
       <a href="#!email"><span class="email"><%= current_user.email %></span></a>
       <li>
-        <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'center waves-effect waves-light waves-red') %>
+        <%= link_to(destroy_user_session_path, :method => :delete, class: 'center waves-effect waves-light waves-red') do %>
+          <button class="btn-flat"><i class="fa fa-sign-out big-icon" aria-hidden="true"></i> Log Out</button>
+          <% end %>
       </li>
     </div>
       <li><div class="divider"></div></li>
       <li><a class="waves-effect" href="<%= projects_path %>"><i class="material-icons">list</i> View All Projects</a></li>
       <li><a class="waves-effect" href="<%= projects_path %>"><i class="material-icons">view_day</i> View Your Projects</a></li>
       <li><div class="divider"></div></li>
-      <li><a class="btn-flat waves-effect waves-light waves-teal" id="back"><i class="material-icons">fast_rewind</i>Back</a></li>
+      <li><a class="btn-flat waves-effect waves-light waves-teal" id="back"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</a></li>
 <% else %>
   <li><div class="divider" style="margin-top: 75%"></div></li>
   <li>
@@ -23,4 +25,16 @@
     <%= link_to('Create an account', new_user_registration_path, class: 'center waves-effect waves-light waves-teal') %>
   </li>
   <li><div class="divider"></div></li>
+  <li><a class="subheader center">Sign in with:</a></li>
+  <li class="center">
+    <%= link_to user_facebook_omniauth_authorize_path do %>
+      <button class="btn" style="background-color: #3b5998"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</button><br>
+    <% end %>
+  </li>
+  <li class="center">
+    <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+      <button class="btn" style="background-color: #d34836"><i class="fa fa-google-plus" aria-hidden="true"></i> <span id="google-plus">google+</span></button>
+    <% end %>
+  </li>
 <% end %>
+
