@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    if check_if_project_leader
+    if check_if_team_member
       @project.destroy
       redirect_to projects_url, notice: 'Project was successfully destroyed.'
     else
@@ -50,5 +50,9 @@ class ProjectsController < ApplicationController
                                     :completed,
                                     tasks_attributes:
                                     %i[id title content due_date completed])
+  end
+
+  def check_if_team_member
+    @project.team_members.include?(current_user)
   end
 end
