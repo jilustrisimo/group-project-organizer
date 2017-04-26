@@ -1,15 +1,17 @@
 <% if user_signed_in? %>
-    <div class="userView">
+    <div class="userView" style="padding: 40px">
       <div class="background">
+        <img src="/assets/stock-photo.jpg">
       </div>
-      <a href="#!name"><span class="name"><%= current_user.username %></span></a>
-      <a href="#!email"><span class="email"><%= current_user.email %></span></a>
+      <a href="#!name"><span class="name white-text"><%= current_user.username %></span></a>
+      <a href="#!email"><span class="email white-text"><%= current_user.email %></span></a>
+    </div>
+      <li><div class="divider"></div></li>
       <li>
         <%= link_to(destroy_user_session_path, :method => :delete, class: 'center waves-effect waves-light waves-red') do %>
           <button class="btn-flat"><i class="fa fa-sign-out big-icon" aria-hidden="true"></i> Log Out</button>
           <% end %>
       </li>
-    </div>
       <li><div class="divider"></div></li>
       <li><a class="waves-effect" href="<%= projects_path %>"><i class="material-icons">list</i> View All Projects</a></li>
       <li><a class="waves-effect" href="<%= projects_path %>"><i class="material-icons">view_week</i> View Your Projects</a></li>
