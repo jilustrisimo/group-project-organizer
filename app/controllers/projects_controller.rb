@@ -32,8 +32,8 @@ class ProjectsController < ApplicationController
       @project.destroy
       redirect_to projects_url, notice: 'Project was successfully destroyed.'
     else
-      flash[:error] = 'Only the project leader can delete a project'
-      redirect_to projects_url
+      flash[:error] = 'Only a project member can delete a project'
+      redirect_to projects_path
     end
   end
 
@@ -51,9 +51,4 @@ class ProjectsController < ApplicationController
                                     tasks_attributes:
                                     %i[id title content due_date completed])
   end
-
-  def check_if_project_leader
-    @project.project_leader == current_user
-  end
-
 end
