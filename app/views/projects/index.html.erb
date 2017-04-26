@@ -8,7 +8,7 @@
   
     <% @projects.each do |project| %>
       <div class="card-panel hoverable">
-        <% if project.project_members.include?(current_user) %>
+        <% if project.team_members.include?(current_user) %>
           <p class="green-text" style="font-weight: bold">You are a member of this project</p>
         <% else %>
           <%= button_to 'Join Team', project_teams_path(project), class: 'btn-small teal accent-4 white-text' %>

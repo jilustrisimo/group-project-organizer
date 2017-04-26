@@ -1,8 +1,18 @@
 class ProjectTeamsController < ApplicationController
+  before_action :set_project
 
   def create
-    @project = Project.find(params[:format])
-    @project.project_members << current_user
+    @project.team_members << current_user
     redirect_to projects_path, notice: "You Successfully joined #{@project.title}"
+  end
+
+  def destroy
+    
+  end
+
+  private
+
+  def set_project
+    @project = Project.find(params[:format])
   end
 end
