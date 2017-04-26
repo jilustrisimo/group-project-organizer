@@ -8,13 +8,15 @@
   
     <% @projects.each do |project| %>
       <div class="card-panel hoverable">
+        <% if project.project_members.include?(current_user) %>
+          <p class="green-text" style="font-weight: bold">You are a member of this project</p>
+        <% else %>
+          <%= button_to 'Join Team', project_teams_path(project), class: 'btn-small teal accent-4 white-text' %>
+        <% end %>
         <%= link_to project do %>
         <div class="center-align">
           <h3 class="break"><b><%= project.title %></b></h3>
           <p><%= project.description %></p><br>
-            <% unless project.project_leader.nil? %>
-            <p>Created by: <%= project.project_leader.username %></p>
-            <% end %>
           <small class="left"><b>Due Date</b></small><br>
           <p class="left" style="margin: 0"><%= project.due_date.strftime('%A, %e %B %Y') %></p>
 

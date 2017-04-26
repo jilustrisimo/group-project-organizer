@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.project_leader = current_user
+    @project.project_members << current_user
     notice = 'Project was successfully created.'
     @project.save ? (redirect_to @project, notice: notice) : (render :new)
   end
