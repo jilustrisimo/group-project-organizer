@@ -44,6 +44,12 @@
               <i class="material-icons">delete</i>
         <% end %>
       </li>
+      <li>
+        <% set_project_team %>
+        <%= link_to project_team_path(@team), method: :delete, class: 'btn-floating tooltipped orange', 'data-tooltip': "leave project team", 'data-position': 'left', data: { confirm: "Are you sure you want to leave #{@project.title}'s team?" } do %>
+              <i class="material-icons">fast_rewind</i>
+        <% end %>
+      </li>
     </ul>
   </div>
 <% end %>

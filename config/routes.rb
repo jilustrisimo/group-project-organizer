@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :tasks, except: :index
   end
 
-  resources :project_teams, only: :create
+  resources :project_teams, only: %i[create destroy]
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
