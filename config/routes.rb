@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   post '/users/:user_id/tasks/:task_id/edit', to: 'tasks#assign'
+  get '/users/:user_id/tasks', to: 'tasks#display'
 
   root 'projects#index'
 
