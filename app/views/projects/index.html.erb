@@ -2,7 +2,7 @@
 
 <% @projects.each do |project| %>
   <div class="card-panel hoverable">
-    <% if project.team_members.include?(current_user) %>
+    <% if project.team_member?(current_user) %>
       <i class="material-icons teal-text">lock_open</i>
     <% else %>
       <a href="<%= project_teams_path(project_id: project.id) %>" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
@@ -14,7 +14,7 @@
       <small class="left"><b>Due Date</b></small><br>
       <p class="left" style="margin: 0"><%= project.due_date.strftime('%A, %e %B %Y') %></p><br>
 
-      <% if project.team_members.include?(current_user) %>
+      <% if project.team_member?(current_user) %>
         <%= link_to project, method: :delete, class: 'right btn-flat-small waves-effect waves-red', data: { confirm: "Are you sure you want to delete #{project.title} and all its tasks?" } do %>
             <i class="material-icons">delete</i>
         <% end %><br>
