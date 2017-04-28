@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
-  before_action :set_project, except: :assign
+  before_action :set_project, except: %i[assign display]
 
   def show() end
 
@@ -27,13 +27,18 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to @project, notice: 'Task was successfully destroyed.'
+    redirect_to request.env['HTTP_REFERER'], notice: 'Task was successfully destroyed.'
   end
 
   def assign
     task = Task.find(params[:task_id])
     current_user.tasks << task
     redirect_to project_path(task.project), notice: "You have successfully assigned yourself to #{task.title}"
+  end
+
+  def display
+    @tasks = current_user.tasks
+    render :index
   end
 
   private
