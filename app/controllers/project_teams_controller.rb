@@ -8,12 +8,7 @@ class ProjectTeamsController < ApplicationController
 
   def destroy
     pt = ProjectTeam.find(params[:id])
-    tasks = current_user.tasks.where('project_id = ?', pt.project_id.to_s)
-    # too many db impacts
-    tasks.each do |task|
-      task.user = nil
-      task.save
-    end
+    current_user.tasks.where('project_id = ?', pt.project_id.to_s).update_all(user_id: nil)
     pt.destroy
     redirect_to projects_path, notice: 'Successfully left project'
   end
