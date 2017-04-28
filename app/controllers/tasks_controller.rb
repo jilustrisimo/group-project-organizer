@@ -1,8 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :set_project, except: %i[assign display]
-
-  def show() end
+  before_action :check_if_team_member
 
   def new
     @task = Task.new
@@ -11,15 +10,11 @@ class TasksController < ApplicationController
   def edit() end
 
   def create
-    if @project.tasks.build(task_params).save
-      redirect_to @project, notice: 'Task was successfully created.'
-    else
-      render :new
-    end
+    return render :new unless @project.tasks.build(task_params).save
+    redirect_to @project, notice: 'Task was successfully created.'
   end
 
   def update
-
     @task.assign_attributes(task_params)
     notice = 'Task was successfully updated.'
     @task.save ? (redirect_to @project, notice: notice) : (render :edit)
@@ -27,13 +22,15 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to request.env['HTTP_REFERER'], notice: 'Task was successfully destroyed.'
+    notice = 'Task was successfully destroyed.'
+    redirect_to request.env['HTTP_REFERER'], notice: notice
   end
 
   def assign
     task = Task.find(params[:task_id])
     current_user.tasks << task
-    redirect_to project_path(task.project), notice: "You have successfully assigned yourself to #{task.title}"
+    notice = "You have successfully assigned yourself to #{task.title}"
+    redirect_to project_path(task.project), notice: notice
   end
 
   def display

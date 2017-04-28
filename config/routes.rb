@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :projects do
-    resources :tasks, except: :index
+    resources :tasks, except: %i[index show]
   end
 
   resources :project_teams, only: %i[create destroy]
