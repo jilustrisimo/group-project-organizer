@@ -1,20 +1,20 @@
 <h4 class="center">You have <%= current_user.tasks.count %> tasks</h4>
 
-    <% @tasks.each do |task| %>
-      <div class="card-panel hoverable">
+<% @tasks.each do |task| %>
+  <div class="card-panel hoverable">
 
-        <div class="center-align">
-          <%= link_to edit_project_task_path(task.project, task) do %>
-            <h3 class="break"><b><%= task.title %></b></h3>
-            <h5 class="break"><b>Project: <%= task.project.title %></b></h5>
-            <p><%= task.content %></p><br>
-            <small class="left"><b>Due Date</b></small><br>
-            <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
-          <% end %>
-            <%= link_to project_task_path(task.project, task), method: :delete, class: 'right btn-flat-small waves-effect waves-red', data: { confirm: "Are you sure you want to delete #{task.title}?" } do %>
-                <i class="material-icons">delete</i>
-          <% end %><br>
-        </div>
-      </div>
+    <div class="center-align">
+      <%= link_to edit_project_task_path(task.project, task) do %>
+        <h3 class="break"><b><%= task.title %></b></h3>
+        <h5 class="break"><b>Project: <%= task.project.title %></b></h5>
+        <p><%= task.content %></p><br>
+        <small class="left"><b>Due Date</b></small><br>
+        <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
+      <% end %>
+        <%= link_to project_task_path(task.project, task), method: :delete, class: 'right btn-flat-small waves-effect waves-red', data: { confirm: "Are you sure you want to delete #{task.title}?" } do %>
+            <i class="material-icons">delete</i>
+      <% end %><br>
+    </div>
+  </div>
 
-    <% end %>
+<% end %>
