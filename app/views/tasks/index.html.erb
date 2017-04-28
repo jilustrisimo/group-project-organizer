@@ -2,8 +2,12 @@
 
 <% @tasks.each do |task| %>
   <div class="card-panel hoverable">
-    <%= link_to edit_project_task_path(task.project, task), data: {value: "true"} do %>
-      <i class="material-icons">done</i>
+    <% if task.completed? %>
+      <a href="#" class="teal-text bold"><i class="material-icons teal-text">done</i> Completed</a>
+    <% else %>
+      <%= link_to project_task_path(task.project, task, task: {completed: true}), method: :patch, class: 'btn-flat tooltipped waves-effect waves-teal', 'data-tooltip':'Mark Complete', 'data-position':'top' do %>
+        <i class="material-icons teal-text">turned_in</i>
+      <% end %>
     <% end %>
     <div class="center-align">
       <%= link_to edit_project_task_path(task.project, task) do %>
