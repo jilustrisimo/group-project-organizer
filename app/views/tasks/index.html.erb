@@ -9,7 +9,7 @@
             <h5 class="break"><b>Project: <%= task.project.title %></b></h5>
             <p><%= task.content %></p><br>
             <small class="left"><b>Due Date</b></small><br>
-            <p class="left" style="margin: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p><br>
+            <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
           <% end %>
             <%= link_to project_task_path(task.project, task), method: :delete, class: 'right btn-flat-small waves-effect waves-red', data: { confirm: "Are you sure you want to delete #{task.title}?" } do %>
                 <i class="material-icons">delete</i>

@@ -1,7 +1,11 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
-  before_action :set_project, except: %i[assign display]
-  before_action :check_if_team_member
+  before_action :set_project, except: %i[assign index]
+  before_action :check_if_team_member, except: :index
+
+  def index
+    @tasks = current_user.tasks
+  end
 
   def new
     @task = Task.new
@@ -33,10 +37,6 @@ class TasksController < ApplicationController
     redirect_to project_path(task.project), notice: notice
   end
 
-  def display
-    @tasks = current_user.tasks
-    render :index
-  end
 
   private
 
