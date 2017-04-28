@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    binding.pry
     @project.assign_attributes(project_params)
     notice = 'Project was successfully updated.'
     @project.save ? (redirect_to @project, notice: notice) : (render :edit)

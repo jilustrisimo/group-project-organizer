@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get '/users/:user_id/tasks', to: 'tasks#index'
   post '/users/:user_id/tasks/:task_id/edit', to: 'tasks#assign'
+  delete '/users/:user_id/tasks/:task_id', to: 'tasks#unassign'
 
   root 'projects#index'
 

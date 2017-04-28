@@ -37,6 +37,11 @@ class TasksController < ApplicationController
     redirect_to project_path(task.project), notice: notice
   end
 
+  def unassign
+    task = Task.find(params[:task_id])
+    current_user.tasks.pop
+  end
+
 
   private
 

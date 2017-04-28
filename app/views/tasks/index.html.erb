@@ -2,7 +2,9 @@
 
 <% @tasks.each do |task| %>
   <div class="card-panel hoverable">
-
+    <%= link_to edit_project_task_path(task.project, task), data: {value: "true"} do %>
+      <i class="material-icons">done</i>
+    <% end %>
     <div class="center-align">
       <%= link_to edit_project_task_path(task.project, task) do %>
         <h3 class="break"><b><%= task.title %></b></h3>
@@ -13,7 +15,7 @@
       <% end %>
         <%= link_to project_task_path(task.project, task), method: :delete, class: 'right btn-flat-small waves-effect waves-red', data: { confirm: "Are you sure you want to delete #{task.title}?" } do %>
             <i class="material-icons">delete</i>
-      <% end %><br>
+        <% end %><br>
     </div>
   </div>
 
