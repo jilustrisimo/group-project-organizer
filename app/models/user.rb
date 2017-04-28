@@ -7,9 +7,9 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
 
-  has_many :project_teams
+  has_many :project_teams, dependent: :nullify
   has_many :projects, through: :project_teams
-  has_many :tasks
+  has_many :tasks, dependent: :nullify
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
