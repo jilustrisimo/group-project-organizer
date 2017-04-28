@@ -13,9 +13,7 @@
         <small class="left"><b>Due Date</b></small><br>
         <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
       <% end %>
-        <%= link_to project_task_path(task.project, task), method: :delete, class: 'right btn-flat-small waves-effect waves-red', data: { confirm: "Are you sure you want to delete #{task.title}?" } do %>
-            <i class="material-icons">delete</i>
-        <% end %><br>
+        <a href="/users/<%= current_user.id %>/tasks/<%= task.id %>" class="right btn-flat waves-effect waves-red tooltipped" data-method="delete" data-tooltip="remove from your tasks" data-position="top"><i class="fa fa-minus-circle red-text" aria-hidden="true"></i></a><br>
     </div>
   </div>
 

@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
-  before_action :set_project, except: %i[assign index]
-  before_action :check_if_team_member, except: %i[assign index]
+  before_action :set_project, except: %i[assign index unassign]
+  before_action :check_if_team_member, except: %i[assign index unassign]
 
   def index
     @tasks = current_user.tasks
@@ -30,6 +30,7 @@ class TasksController < ApplicationController
     redirect_to request.env['HTTP_REFERER'], notice: notice
   end
 
+  # add task to current_user.tasks
   def assign
     task = Task.find(params[:task_id])
     current_user.tasks << task
@@ -37,9 +38,9 @@ class TasksController < ApplicationController
     redirect_to project_path(task.project), notice: notice
   end
 
+  # remove task from current_user.tasks
   def unassign
-    task = Task.find(params[:task_id])
-    current_user.tasks.pop
+    current_user.tasks.where('id = ?', params[:task_id]).update(user_id: nil)
   end
 
 
