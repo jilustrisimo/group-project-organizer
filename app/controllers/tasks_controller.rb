@@ -41,6 +41,8 @@ class TasksController < ApplicationController
   # remove task from current_user.tasks
   def unassign
     current_user.tasks.where('id = ?', params[:task_id]).update(user_id: nil)
+    notice = 'Task successfully unassigned'
+    redirect_to request.env['HTTP_REFERER'], notice: notice
   end
 
 
