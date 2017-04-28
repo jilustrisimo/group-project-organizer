@@ -15,7 +15,7 @@
 
 <% @project.tasks.each do |task| %>
   <div class="card-panel hoverable center-align">
-  <% if @project.team_members.include?(current_user) && task.user.nil? %>
+  <% if task.user.nil? %>
     <a href="/users/<%= current_user.id %>/tasks/<%= task.id %>/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a>
   <% end %><br>
   <%= link_to edit_project_task_path(@project, task) do %>
@@ -31,7 +31,7 @@
   <% end %><br>
   </div>
 <% end %>
-<% if @project.team_members.include?(current_user) %>
+
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large teal accent-4">
       <i class="large material-icons">menu</i>
@@ -52,4 +52,3 @@
       </li>
     </ul>
   </div>
-<% end %>
