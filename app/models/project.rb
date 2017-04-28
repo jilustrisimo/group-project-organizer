@@ -9,4 +9,8 @@ class Project < ApplicationRecord
     tasks_attributes.delete_if { |_i, h| h.any? { |_k, v| v.empty? } }
     tasks_attributes.values.each { |task| tasks.build(task) }
   end
+
+  def team_member?(user)
+    team_members.include?(user)
+  end
 end
