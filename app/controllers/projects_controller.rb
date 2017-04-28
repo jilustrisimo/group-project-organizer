@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[show edit update destroy]
+  before_action :set_project, except: %i[index new]
+  before_action :check_if_team_member, except: %i[index new]
 
   def index
     @projects = Project.all
@@ -11,8 +12,7 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-  def edit
-  end
+  def edit() end
 
   def create
     @project = Project.new(project_params)
@@ -28,13 +28,8 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    if check_if_team_member
-      @project.destroy
-      redirect_to projects_url, notice: 'Project was successfully destroyed.'
-    else
-      flash[:error] = 'Only a project member can delete a project'
-      redirect_to projects_path
-    end
+    @project.destroy
+    redirect_to projects_url, notice: 'Project was successfully destroyed.'
   end
 
   private
@@ -50,9 +45,5 @@ class ProjectsController < ApplicationController
                                     :completed,
                                     tasks_attributes:
                                     %i[id title content due_date completed])
-  end
-
-  def check_if_team_member
-    @project.team_members.include?(current_user)
   end
 end
