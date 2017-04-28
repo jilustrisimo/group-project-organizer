@@ -5,7 +5,7 @@
     <% if project.team_members.include?(current_user) %>
       <i class="material-icons teal-text">lock_open</i>
     <% else %>
-      <a href="<%= project_teams_path(project) %>" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
+      <a href="<%= project_teams_path(project_id: project.id) %>" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
     <% end %>
     <%= link_to project do %>
     <div class="center-align">

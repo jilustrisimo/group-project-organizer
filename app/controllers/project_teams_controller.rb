@@ -1,7 +1,7 @@
 class ProjectTeamsController < ApplicationController
 
   def create
-    @project = Project.find(params[:format])
+    @project = Project.find(params[:project_id])
     @project.team_members << current_user
     redirect_to @project, notice: "You Successfully joined #{@project.title}"
   end
