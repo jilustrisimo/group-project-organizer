@@ -1,10 +1,10 @@
 class Project < ApplicationRecord
-  has_many :project_teams
+  has_many :project_teams, dependent: :destroy
   has_many :team_members, through: :project_teams, source: :user
   has_many :tasks, dependent: :destroy
 
   validates_presence_of :title, :description, :due_date
-  validate :due_date_cannot_be_in_the_past
+  validate :due_date_cannot_be_in_the_past, on: :create
 
   def tasks_attributes=(tasks_attributes)
     tasks_attributes.delete_if { |_i, h| h.any? { |_k, v| v.empty? } }
@@ -22,7 +22,7 @@ class Project < ApplicationRecord
   def completed?
     if completed
       true
-    elsif completed != true && tasks.all?(&:completed?)
+    elsif !completed && tasks.all?(&:completed?)
       true && update(completed: true)
     else
       false

@@ -7,14 +7,14 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
 
-  has_many :project_teams, dependent: :nullify
+  has_many :project_teams, dependent: :destroy
   has_many :projects, through: :project_teams
   has_many :tasks, dependent: :nullify
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
       user.username = auth.info.name
     end
   end

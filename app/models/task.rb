@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   belongs_to :project
 
   validates_presence_of :title, :content, :due_date
-  validate :due_date_cannot_be_in_the_past
+  validate :due_date_cannot_be_in_the_past, on: :create
 
   def completed?
     completed == true
