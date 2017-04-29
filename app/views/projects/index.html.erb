@@ -2,11 +2,13 @@
 
 <% @projects.each do |project| %>
   <div class="card-panel hoverable">
-    <% if project.team_member?(current_user) %>
+    <% if project.completed? %>
+      <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> Project Completed</a>
+    <% elsif project.team_member?(current_user) %>
       <i class="material-icons teal-text">lock_open</i>
     <% else %>
       <a href="<%= project_teams_path(project_id: project.id) %>" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
-    <% end %>
+    <% end %><br>
     <%= link_to project do %>
     <div class="center-align">
       <h3 class="break"><b><%= project.title %></b></h3>

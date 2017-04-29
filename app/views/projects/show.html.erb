@@ -1,3 +1,6 @@
+<% if @project.completed? %>
+  <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> Project Completed</a>
+<% end %>
 <div class="center-align">
   <h3>
     <%= @project.title %>
