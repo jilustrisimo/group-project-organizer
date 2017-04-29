@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, except: %i[index new]
-  before_action :check_if_team_member, except: %i[index new]
+  before_action :set_project, except: %i[index new create]
+  before_action :check_if_team_member, except: %i[index new create]
 
   def index
     @projects = Project.all.order('due_date')
@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.project_members << current_user
+    @project.team_members << current_user
     notice = 'Project was successfully created.'
     @project.save ? (redirect_to @project, notice: notice) : (render :new)
   end
