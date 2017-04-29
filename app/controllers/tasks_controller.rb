@@ -14,8 +14,9 @@ class TasksController < ApplicationController
   def edit() end
 
   def create
-    return render :new unless @project.tasks.build(task_params).save
-    redirect_to @project, notice: 'Task was successfully created.'
+    @task = @project.tasks.build(task_params)
+    notice = 'Task was successfully created.'
+    @task.save ? (redirect_to @project, notice: notice) : (render :new)
   end
 
   def update
