@@ -17,7 +17,7 @@
         <small class="left"><b>Due Date</b></small><br>
         <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
       <% end %>
-        <a href="/users/<%= current_user.id %>/tasks/<%= task.id %>" class="right btn-flat waves-effect waves-red tooltipped" data-method="delete" data-tooltip="remove from your tasks" data-position="top"><i class="fa fa-minus-circle red-text" aria-hidden="true"></i></a><br>
+        <a href="/users/<%= current_user.id %>/tasks/<%= task.id %>" class="right btn-small-flat waves-effect waves-red tooltipped" data-method="delete" data-tooltip="remove from your tasks" data-position="top"><i class="material-icons red-text">settings_backup_restore</i></a><br>
     </div>
   </div>
 
