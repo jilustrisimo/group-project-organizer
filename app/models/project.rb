@@ -13,4 +13,8 @@ class Project < ApplicationRecord
   def team_member?(user)
     team_members.include?(user)
   end
+
+  def completed?
+    tasks.all?(&:completed?)
+  end
 end
