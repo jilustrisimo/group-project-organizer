@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :check_if_team_member, except: %i[assign index unassign]
 
   def index
-    @tasks = current_user.tasks.order('due_date')
+    @tasks = current_user.tasks.ordered
   end
 
   def new
@@ -33,10 +33,10 @@ class TasksController < ApplicationController
 
   # add task to current_user.tasks
   def assign
-    task = Task.find(params[:task_id])
-    current_user.tasks << task
-    notice = "You have successfully assigned yourself to #{task.title}"
-    redirect_to project_path(task.project), notice: notice
+    @task = Task.find(params[:task_id])
+    current_user.tasks << @task
+    notice = "You have successfully assigned yourself to #{@task.title}"
+    redirect_to project_path(@task.project), notice: notice
   end
 
   # remove task from current_user.tasks

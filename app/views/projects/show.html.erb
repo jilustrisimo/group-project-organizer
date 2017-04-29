@@ -16,7 +16,7 @@
   </p>
 </div>
 
-<% @project.tasks.order('due_date').each do |task| %>
+<% @project.tasks.ordered.each do |task| %>
   <div class="card-panel hoverable center-align">
   <% if task.completed? %>
     <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done</i> Completed</a>
