@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :check_if_team_member, except: %i[assign index unassign]
 
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.order('due_date')
   end
 
   def new

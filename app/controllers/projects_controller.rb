@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :check_if_team_member, except: %i[index new]
 
   def index
-    @projects = Project.all
+    @projects = Project.all.order('due_date')
   end
 
   def show() end
