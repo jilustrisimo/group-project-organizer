@@ -26,7 +26,7 @@
     <%= f.text_area :description, class: 'materialize-textarea', 'data-length': '500', required: true %>
   </div>
 
-<% if params[:action] == "new" %>
+<% if params[:action] == "new" || params[:action] == "create" %>
 
   <ul class="collapsible" data-collapsible="expandable">
     <%= f.fields_for :tasks, 3.times{project.tasks.build} do |task_builder| %>
@@ -39,7 +39,7 @@
             </div>
 
             <div class="input-field">
-              <%= task_builder.date_field :due_date, class: 'datepicker', min: Date.today %>
+              <%= task_builder.date_field :due_date, class: 'datepicker' %>
               <%= task_builder.label :due_date %>
             </div>
 
