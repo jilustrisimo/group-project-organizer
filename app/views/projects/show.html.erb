@@ -45,7 +45,7 @@
     <h5><b><%= task.title %></b></h5>
     <p><%= task.content %></p>
     <% if task.user %>
-      <p>Assigned to: <%= task.user.username %></p>
+      <p><strong>Assigned to:</strong> <%= task.user.username %></p>
     <% end %>
     <small class="left"><b>Due Date</b></small><br>
     <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
