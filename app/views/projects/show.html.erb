@@ -35,7 +35,6 @@
     <% end %>
     <small class="left"><b>Due Date</b></small><br>
     <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
-    <!--<p class="left">Complete by: <%= task.due_date.strftime('%A %e %B %Y') %></p><br>-->
   <% end %>
   <%= link_to project_task_path(@project, task), method: :delete, class: 'right btn-flat-small waves-effect waves-red', data: { confirm: "Are you sure you want to delete #{task.title}?" }  do%>
     <i class="material-icons">delete</i>
