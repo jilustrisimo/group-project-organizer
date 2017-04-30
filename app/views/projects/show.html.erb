@@ -10,10 +10,14 @@
     <%= @project.description %>
   </h5>
 
-  <p>
-    <strong>Due date:</strong>
+  <p class="left-align">
+    <strong>Due date</strong><br>
     <%= @project.due_date.strftime('%A %e %B %Y') %>
   </p>
+<div class="divider"></div>
+  <h5>
+    <strong>Tasks:</strong><br> <%= @project.tasks.count %> total. <%= @project.tasks.incompleted.count %> incomplete.
+  </h5>
 </div>
 
 <% @project.tasks.ordered.each do |task| %>
@@ -29,7 +33,9 @@
     <% if task.user %>
       <p>Assigned to: <%= task.user.username %></p>
     <% end %>
-    <p class="left">Complete by: <%= task.due_date.strftime('%A %e %B %Y') %></p><br>
+    <small class="left"><b>Due Date</b></small><br>
+    <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
+    <!--<p class="left">Complete by: <%= task.due_date.strftime('%A %e %B %Y') %></p><br>-->
   <% end %>
   <%= link_to project_task_path(@project, task), method: :delete, class: 'right btn-flat-small waves-effect waves-red', data: { confirm: "Are you sure you want to delete #{task.title}?" }  do%>
     <i class="material-icons">delete</i>

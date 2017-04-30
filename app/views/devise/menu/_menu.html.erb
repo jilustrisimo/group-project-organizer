@@ -10,11 +10,11 @@
       <li>
         <%= link_to(destroy_user_session_path, :method => :delete, class: 'center waves-effect waves-light waves-red') do %>
           <button class="btn-flat"><i class="fa fa-sign-out big-icon" aria-hidden="true"></i> Log Out</button>
-          <% end %>
+        <% end %>
       </li>
       <li><div class="divider"></div></li>
       <li><a class="waves-effect" href="<%= projects_path %>"><i class="material-icons">list</i> View All Projects</a></li>
-      <li><a class="waves-effect" href="/users/<%= current_user.id %>/tasks"><i class="material-icons">assignment</i> View Your Tasks</a></li>
+      <li><a class="waves-effect" href="/users/<%= current_user.id %>/tasks"><i class="material-icons">assignment</i> <%= current_user.tasks.incompleted.count %> <%= 'Task'.pluralize(current_user.tasks.incompleted.count) %> Left to Complete</a></li>
       <li><a class="waves-effect" href="<%= new_project_path %>"><i class="material-icons">library_add</i> Create a New Project</a></li>
       <li><div class="divider"></div></li>
       <li><a class="btn-flat waves-effect waves-light waves-teal" id="back"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</a></li>
