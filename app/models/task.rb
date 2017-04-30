@@ -5,7 +5,8 @@ class Task < ApplicationRecord
   validates_presence_of :title, :content, :due_date
   validate :due_date_cannot_be_in_the_past, on: :create
 
-  scope :incompleted, (->() { where('completed = ?', false) })
+  scope :incompleted, (->() { where(completed: false) })
+  scope :incompleted_and_unassigned, (-> () { incompleted.where(user_id: nil) })
 
   def completed?
     completed == true
