@@ -15,9 +15,21 @@
     <%= @project.due_date.strftime('%A %e %B %Y') %>
   </p>
 <div class="divider"></div>
-  <h5>
-    <strong>Tasks:</strong><br> <%= @project.tasks.count %> total. <%= @project.tasks.incompleted.count %> incomplete.
-  </h5>
+  <table style="table-layout: fixed; margin-top: 10px">
+    <caption style="font-size: 160%">Tasks Overview</caption>
+    <tr>
+      <th>Incompleted</th>
+      <th>Unassigned</th>
+      <th>Completed</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <td><%= @project.remaining_tasks_count %></td>
+      <td><%= @project.unassigned_tasks_count %></td>
+      <td><%= @project.tasks.count - @project.remaining_tasks_count %></td>
+      <td><%= @project.tasks.count %></td>
+    </tr>
+  </table>
 </div>
 
 <% @project.tasks.ordered.each do |task| %>
