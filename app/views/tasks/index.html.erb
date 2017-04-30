@@ -3,7 +3,7 @@
 
 <% @tasks.each do |task| %>
   <div class="card-panel hoverable">
-    <% if task.completed? %>
+    <% if task.completed %>
       <%= link_to project_task_path(task.project, task, task: {completed: false}), method: :patch, class: 'btn-flat-small tooltipped waves-effect waves-teal', 'data-tooltip':'Mark Incomplete', 'data-position':'top' do %>
         <i class="material-icons teal-text">done</i>
       <% end %><span class="teal-text">Completed</span>
