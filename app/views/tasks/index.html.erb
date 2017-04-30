@@ -1,4 +1,4 @@
-<h4 class="center">You have <%= current_user.tasks.incompleted.count %> <%= 'task'.pluralize(current_user.tasks.incompleted.count) %> left to complete</h4>
+<h4 class="center">You have <%= pluralize(current_user.remaining_tasks_count, 'task') %> left to complete</h4>
 <h5 class="center"><%= pluralize(current_user.tasks.count, 'task') %> total</h5>
 
 <% @tasks.each do |task| %>
