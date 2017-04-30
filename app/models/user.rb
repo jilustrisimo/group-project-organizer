@@ -18,8 +18,4 @@ class User < ApplicationRecord
       user.username = auth.info.name
     end
   end
-
-  def remaining_tasks_count
-    tasks.incompleted.count
-  end
 end
