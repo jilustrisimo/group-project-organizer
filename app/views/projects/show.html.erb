@@ -17,12 +17,14 @@
 <div class="divider"></div>
   <table style="table-layout: fixed; margin-top: 10px">
     <caption style="font-size: 160%">Tasks Overview</caption>
-    <tr>
-      <th>Incompleted</th>
-      <th>Unassigned</th>
-      <th>Completed</th>
-      <th>Total</th>
-    </tr>
+    <thead>
+      <tr>
+        <th>Incompleted</th>
+        <th>Unassigned</th>
+        <th>Completed</th>
+        <th>Total</th>
+      </tr>
+    </thead>
     <tr>
       <td><%= @project.remaining_tasks_count %></td>
       <td><%= @project.unassigned_tasks_count %></td>

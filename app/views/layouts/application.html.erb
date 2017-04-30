@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="container">
-          <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+          <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons" style="font-size: 32px; margin-top: 25px">menu</i></a>
         </div>
       </nav>
         <ul id="nav-mobile" class="side-nav fixed">
@@ -26,7 +26,7 @@
     </header>
     <div class="container main">
       <div class="row">
-        <div class="col s10 offset-s2 grey lighten-4">
+        <div class="col s12 m8 l10 offset-l2 offset-m2 grey lighten-4">
           <%= render partial: 'projects/notice', locals: {notice: notice} %>
           <% if flash[:error] %>
             <p id="error"><i class="material-icons">error</i><%= flash[:error] %></p>
