@@ -7,6 +7,11 @@
       <% project.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
+      <% project.tasks.each do |task| %>
+        <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      <% end %>
       </ul>
     </div>
   <% end %>
