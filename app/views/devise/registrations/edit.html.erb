@@ -4,6 +4,11 @@
   <%= devise_error_messages! %>
 
   <div class="input-field col s12">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true %>
+  </div>
+
+  <div class="input-field col s12">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
@@ -28,7 +33,7 @@
 
   <div class="input-field col s12">
     <%= f.label :current_password %>
-    <%= f.password_field :current_password, autocomplete: "off", placeholder:'we need your current password to confirm your changes' %>
+    <%= f.password_field :current_password, autocomplete: "off", placeholder:'we need your current password to confirm your changes (not required for facebook and google accounts)' %>
   </div>
 
   <div class="actions">
