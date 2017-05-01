@@ -14,8 +14,8 @@
     <% end %>
     <div class="center-align">
       <%= link_to edit_project_task_path(task.project, task) do %>
-        <h3 class="break"><b><%= task.title %></b></h3>
-        <h5 class="break"><b>Project: <%= task.project.title %></b></h5>
+        <h3 class="break truncate"><b><%= task.title %></b></h3>
+        <h5 class="break truncate"><b>Project: <%= task.project.title %></b></h5>
         <p><%= task.content %></p><br>
         <small class="left"><b>Due Date</b></small><br>
         <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
