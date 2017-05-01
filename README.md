@@ -18,7 +18,7 @@ Group Project Oganizer is a Web App, with a Rails back-end, to help you manage y
   NOTE: *Whenever deleting something you will be prompted to confirm your action.*
 
 You can also:
-  - Change your username, password or delete account
+  - Change your username, e-mail, password or delete account
 
 ## Video walkthrough
 *COMING SOON*
