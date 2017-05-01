@@ -38,6 +38,8 @@ User.all.each do |user|
   end
 end
 
+Project.all.sample.tasks.update_all(completed: true)
+
 titles = ['Incompleted Project', 'Completed Project']
 descriptions = ['This project should be towards the top of your page as it is incomplete. Notice how projects and tasks are grouped by completion status then sorted by due date.', 'This project should be towards the bottom of the page and marked completed.  It should not be accessible as you are unable to join a completed project you are not already a member of. NOTE: if you see this at the top of your page after just creating this data hit refresh.  For some reason the order is reversed when data is generated the first time.']
 
