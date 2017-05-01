@@ -12,7 +12,11 @@
 
   <p class="left-align">
     <strong>Due date</strong><br>
-    <%= @project.due_date.strftime('%A %e %B %Y') %>
+    <% if @project.past_due_date? %>
+      <p class="left red-text" style="margin: 0"><%= @project.due_date.strftime('%A, %e %B %Y') %></p><br>
+    <% else %>
+      <p class="left" style="margin: 0"><%= @project.due_date.strftime('%A, %e %B %Y') %></p><br>
+    <% end %>
   </p>
 <div class="divider"></div>
   <table style="table-layout: fixed; margin-top: 10px">
@@ -52,7 +56,11 @@
       <p><strong>Assigned to:</strong> <%= task.user.username %></p>
     <% end %>
     <small class="left"><b>Due Date</b></small><br>
-    <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
+      <% if task.past_due_date? %>
+        <p class="left red-text" style="margin: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p><br>
+      <% else %>
+        <p class="left" style="margin: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p><br>
+      <% end %>
   <% end %>
   <%= link_to project_task_path(@project, task), method: :delete, class: 'right btn-flat-small waves-effect waves-red', data: { confirm: "Are you sure you want to delete #{task.title}?" }  do%>
     <i class="material-icons">delete</i>
