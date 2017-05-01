@@ -6,23 +6,30 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-10.times do
+20.times do
   User.create(email: Faker::Internet.safe_email,
               username: Faker::Internet.user_name,
               password: Faker::Internet.password(10, 20))
 end
 
-2.times do
-  Project.create(title: Faker::App.name,
-                 description: Faker::Lorem.paragraph,
-                 due_date: Faker::Time.forward(30))
-end
-
 10.times do
-  Task.create(title: Faker::Hipster.sentence(3),
-                 content: Faker::Lorem.paragraph,
-                 due_date: Faker::Time.forward(30))
+  Project.create(title: Faker::App.name,
+                 description: Faker::Hipster.paragraph,
+                 due_date: Faker::Date.forward(90))
 end
 
-Project.find_by_id(1).tasks << Task.all[0..5]
-Project.find_by_id(2).tasks << Task.all[6..-1]
+Project.all.each do |project|
+  5.times do
+    project.tasks.build(title: Faker::Commerce.product_name,
+                        content: Faker::Hipster.paragraph,
+                        due_date: Faker::Date.between(Date.today, project.due_date))
+           .save
+  end
+end
+
+5.times do
+  User.all.each do |user|
+    user.tasks << Task.all.sample
+    user.tasks.last.project.team_members << user
+  end
+end
