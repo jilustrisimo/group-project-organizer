@@ -16,4 +16,8 @@ $(() => {
       edge: 'left',
       draggable: true
   })
+
+  $('.password').find('.fa-eye').click(function(){
+        $('#password').prop("type", "text");
+    })
 })
