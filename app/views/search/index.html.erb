@@ -1,0 +1,57 @@
+<h3 class="center">Matching Projects</h3>
+<%# binding.pry %>
+
+<% @projects.each do |project| %>
+  <div class="card-panel hoverable">
+    <% if project.completed? %>
+      <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> Project Completed</a>
+    <% elsif project.team_member?(current_user) %>
+      <i class="material-icons teal-text">lock_open</i>
+    <% else %>
+      <a href="<%= project_teams_path(project_id: project.id) %>" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
+    <% end %><br>
+    <%= link_to project do %>
+    <div class="center-align">
+      <h3 class="break truncate"><b><%= project.title %></b></h3>
+      <p><%= project.description %></p><br>
+      <small class="left"><b>Due Date</b></small><br>
+      <p class="left" style="margin: 0"><%= project.due_date.strftime('%A, %e %B %Y') %></p><br>
+
+      <% if project.team_member?(current_user) %>
+        <%= link_to project, method: :delete, class: 'right btn-flat-small waves-effect waves-red', data: { confirm: "Are you sure you want to delete #{project.title} and all its tasks?" } do %>
+            <i class="material-icons">delete</i>
+        <% end %><br>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+
+<h3 class="center">Matching Tasks</h3>
+
+<% @tasks.each do |task| %>
+  <div class="card-panel hoverable">
+    <% if task.completed %>
+      <%= link_to project_task_path(task.project, task, task: {completed: false}), method: :patch, class: 'btn-flat-small tooltipped waves-effect waves-teal', 'data-tooltip':'Mark Incomplete', 'data-position':'top' do %>
+        <i class="material-icons teal-text">done</i>
+      <% end %><span class="teal-text">Completed</span>
+    <% else %>
+      <%= link_to project_task_path(task.project, task, task: {completed: true}), method: :patch, class: 'btn-flat tooltipped waves-effect waves-teal', 'data-tooltip':'Mark Complete', 'data-position':'top' do %>
+        <i class="material-icons teal-text">turned_in</i>
+      <% end %>
+    <% end %>
+    <div class="center-align">
+      <%= link_to edit_project_task_path(task.project, task) do %>
+        <h3 class="break truncate"><b><%= task.title %></b></h3>
+        <h5 class="break truncate"><b>Project: <%= task.project.title %></b></h5>
+        <p><%= task.content %></p><br>
+        <small class="left"><b>Due Date</b></small><br>
+        <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
+      <% end %>
+      <% if task.id == current_user.id %>
+        <a href="/users/<%= current_user.id %>/tasks/<%= task.id %>" class="right btn-small-flat waves-effect waves-red tooltipped" data-method="delete" data-tooltip="remove from your tasks" data-position="top"><i class="material-icons red-text">settings_backup_restore</i></a><br>
+      <% end %>
+    </div>
+  </div>
+
+<% end %>
