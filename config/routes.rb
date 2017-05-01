@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   resources :project_teams, only: %i[create destroy]
   resources :search, only: :index
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
+  }
 
   root 'projects#index'
 
