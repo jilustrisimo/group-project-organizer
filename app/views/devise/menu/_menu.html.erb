@@ -3,8 +3,8 @@
       <div class="background">
         <img src="/assets/stock-photo.jpg">
       </div>
-      <a href="#!name"><span class="name white-text"><%= current_user.username %></span></a>
-      <a href="#!email"><span class="email white-text"><%= current_user.email %></span></a>
+      <a href="<%= edit_user_registration_path %>"><span class="name white-text tooltipped" data-tooltip="edit your account" data-position="right"><%= current_user.username %></span></a>
+      <a href="<%= edit_user_registration_path %>"><span class="email white-text"><%= current_user.email %></span></a>
     </div>
       <li class="search-wrapper focused">
         <div class="search-bar">
