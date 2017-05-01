@@ -6,7 +6,14 @@
       <a href="#!name"><span class="name white-text"><%= current_user.username %></span></a>
       <a href="#!email"><span class="email white-text"><%= current_user.email %></span></a>
     </div>
-      <li><div class="divider"></div></li>
+      <li class="search-wrapper focused">
+        <div class="search-bar">
+          <%= form_tag(search_index_path, id: "search-form", method: :get) do %>
+            <span></span><i class="material-icons search">search</i></span>
+            <%= text_field_tag :search, params[:search], placeholder: "search projects and tasks" %>
+          <% end %>
+        </div>
+      </li>
       <li>
         <%= link_to(destroy_user_session_path, :method => :delete, class: 'center waves-effect waves-light waves-red') do %>
           <button class="btn-flat"><i class="fa fa-sign-out big-icon" aria-hidden="true"></i> Log Out</button>

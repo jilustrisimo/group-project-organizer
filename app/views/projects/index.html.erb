@@ -11,7 +11,7 @@
     <% end %><br>
     <%= link_to project do %>
     <div class="center-align">
-      <h3 class="break"><b><%= project.title %></b></h3>
+      <h3 class="break truncate"><b><%= project.title %></b></h3>
       <p><%= project.description %></p><br>
       <small class="left"><b>Due Date</b></small><br>
       <p class="left" style="margin: 0"><%= project.due_date.strftime('%A, %e %B %Y') %></p><br>

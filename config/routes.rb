@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
 
   resources :project_teams, only: %i[create destroy]
+  resources :search, only: :index
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 

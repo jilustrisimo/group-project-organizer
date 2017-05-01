@@ -2,7 +2,7 @@
   <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> Project Completed</a>
 <% end %><br>
 <div class="center-align">
-  <h3>
+  <h3 class="truncate">
     <%= @project.title %>
   </h3>
 
@@ -42,7 +42,7 @@
     <a href="/users/<%= current_user.id %>/tasks/<%= task.id %>/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a>
   <% end %><br>
   <%= link_to edit_project_task_path(@project, task) do %>
-    <h5><b><%= task.title %></b></h5>
+    <h5 class="truncate"><b><%= task.title %></b></h5>
     <p><%= task.content %></p>
     <% if task.user %>
       <p><strong>Assigned to:</strong> <%= task.user.username %></p>

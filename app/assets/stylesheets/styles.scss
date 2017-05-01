@@ -80,3 +80,19 @@ nav.top-nav {
 h1, h2, td, th {
   text-align: center
 }
+
+.search-bar {
+    position: relative;
+}
+
+.search-bar input { 
+  text-indent: 32px;
+  margin: 0;
+}
+
+.search-bar .search { 
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    cursor: pointer;
+}
