@@ -1,6 +1,7 @@
-<h3 class="center">Matching Projects</h3>
-<%# binding.pry %>
+<h3 class="center">Results</h3>
+<h4 class="center">Projects</h4>
 
+<div class="divider"></div>
 <% @projects.each do |project| %>
   <div class="card-panel hoverable">
     <% if project.completed? %>
@@ -27,8 +28,9 @@
   <% end %>
 <% end %>
 
-<h3 class="center">Matching Tasks</h3>
+<h3 class="center">Tasks</h3>
 
+<div class="divider"></div>
 <% @tasks.each do |task| %>
   <div class="card-panel hoverable">
     <% if task.completed %>
@@ -46,9 +48,9 @@
         <h5 class="break truncate"><b>Project: <%= task.project.title %></b></h5>
         <p><%= task.content %></p><br>
         <small class="left"><b>Due Date</b></small><br>
-        <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p>
+        <p class="left" style="margin-top: 0"><%= task.due_date.strftime('%A, %e %B %Y') %></p><br>
       <% end %>
-      <% if task.id == current_user.id %>
+      <% if task.user_id == current_user.id %>
         <a href="/users/<%= current_user.id %>/tasks/<%= task.id %>" class="right btn-small-flat waves-effect waves-red tooltipped" data-method="delete" data-tooltip="remove from your tasks" data-position="top"><i class="material-icons red-text">settings_backup_restore</i></a><br>
       <% end %>
     </div>
