@@ -6,7 +6,7 @@ class Project < ApplicationRecord
   validates_presence_of :title, :description, :due_date
   validate :due_date_cannot_be_in_the_past, on: :create
 
-  scope :search, (->(search) { where('title LIKE ? OR description LIKE ? OR due_date LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%") })
+  scope :search, (->(search) { where('title LIKE ? OR description LIKE ? OR cast(due_date as text) LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%") })
 
   def tasks_attributes=(tasks_attributes)
     tasks_attributes.delete_if { |_i, h| h.any? { |_k, v| v.empty? } }
