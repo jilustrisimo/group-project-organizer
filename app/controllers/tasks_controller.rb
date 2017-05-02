@@ -22,7 +22,13 @@ class TasksController < ApplicationController
   def update
     @task.assign_attributes(task_params)
     notice = 'Task was successfully updated.'
-    @task.save ? (redirect_to request.env['HTTP_REFERER'], notice: notice) : (render :edit)
+    if @task.save
+      params[:task].include?('completed') ?
+      (redirect_to request.env['HTTP_REFERER'], notice: notice) :
+      (redirect_to @project, notice: notice)
+    else
+      render :edit
+    end
   end
 
   def destroy
