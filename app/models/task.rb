@@ -7,7 +7,7 @@ class Task < ApplicationRecord
 
   scope :incompleted, (->() { where(completed: false) })
   scope :incompleted_and_unassigned, (-> () { incompleted.where(user_id: nil) })
-  scope :search, (->(search) { where('title LIKE ? OR content LIKE ? OR cast(due_date as text) LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%") })
+  scope :search, (->(search) { where('title ILIKE ? OR content ILIKE ? OR cast(due_date as text) ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%") })
 
   def due_date_cannot_be_in_the_past
     errors.add(:due_date, "can't be in the past") if due_date.present? && due_date < Date.today
