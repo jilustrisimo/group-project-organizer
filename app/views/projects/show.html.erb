@@ -41,13 +41,15 @@
 <% @project.tasks.ordered.each do |task| %>
   <div class="card-panel hoverable center-align">
   <% if task.completed %>
-    <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done</i> Completed</a>
+    <%= link_to project_task_path(task.project, task, task: {completed: false}), method: :patch, class: 'btn-flat-small tooltipped waves-effect waves-teal left', 'data-tooltip':'Mark Incomplete', 'data-position':'top' do %>
+      <i class="material-icons teal-text">done</i><span class="teal-text">Completed</span>
+    <% end %>
   <% elsif task.user.nil? %>
     <a href="/users/<%= current_user.id %>/tasks/<%= task.id %>/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a>
   <% elsif task.user == current_user %>
     <%= link_to project_task_path(@project, task, task: {completed: true}), method: :patch, class: 'btn-flat tooltipped waves-effect waves-teal left', 'data-tooltip':'Mark Complete', 'data-position':'top' do %>
       <i class="material-icons teal-text">turned_in</i>
-    <% end %>
+    <% end %><br>
   <% end %><br>
   <%= link_to edit_project_task_path(@project, task) do %>
     <h5 class="truncate"><b><%= task.title %></b></h5>
