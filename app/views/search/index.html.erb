@@ -35,10 +35,12 @@
       <%= link_to project_task_path(task.project, task, task: {completed: false}), method: :patch, class: 'btn-flat-small tooltipped waves-effect waves-teal', 'data-tooltip':'Mark Incomplete', 'data-position':'top' do %>
         <i class="material-icons teal-text">done</i>
       <% end %><span class="teal-text">Completed</span>
-    <% else %>
+    <% elsif task.user == current_user %>
       <%= link_to project_task_path(task.project, task, task: {completed: true}), method: :patch, class: 'btn-flat tooltipped waves-effect waves-teal', 'data-tooltip':'Mark Complete', 'data-position':'top' do %>
         <i class="material-icons teal-text">turned_in</i>
       <% end %>
+    <% elsif task.user.nil? && task.project.team_member?(current_user) %>
+      <a href="/users/<%= current_user.id %>/tasks/<%= task.id %>/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a>
     <% end %>
     <div class="center-align">
       <%= link_to edit_project_task_path(task.project, task) do %>
