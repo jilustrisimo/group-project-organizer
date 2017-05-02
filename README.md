@@ -21,7 +21,7 @@ You can also:
   - Change your username, e-mail, password or delete account
 
 ## Video walkthrough
-*COMING SOON*
+[![IMAGE ALT TEXT](https://img.youtube.com/vi/SCyzuN-4VOU/0.jpg)](https://www.youtube.com/watch?v=SCyzuN-4VOU "Video Title")
 
 ## Installation
 Clone the repository, then execute:
