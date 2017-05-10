@@ -2,29 +2,7 @@
 <h4 class="center">Projects</h4>
 
 <div class="divider"></div>
-<% @projects.each do |project| %>
-  <div class="card-panel hoverable">
-    <% if project.completed? %>
-      <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> <%= project.updated_at.strftime('%A, %e %B %Y') %></a>
-    <% elsif project.team_member?(current_user) %>
-      <i class="material-icons teal-text">lock_open</i>
-    <% else %>
-      <a href="<%= project_teams_path(project_id: project.id) %>" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
-    <% end %><br>
-    <%= link_to project do %>
-    <div class="center-align">
-      <h3 class="break truncate"><b><%= project.title %></b></h3>
-      <p><%= project.description %></p><br>
-      <small class="left"><b>Due Date</b></small><br>
-      <% if project.past_due_date? %>
-        <p class="left red-text" style="margin: 0"><%= project.due_date.strftime('%A, %e %B %Y') %></p><br>
-      <% else %>
-        <p class="left" style="margin: 0"><%= project.due_date.strftime('%A, %e %B %Y') %></p><br>
-      <% end %>
-    </div>
-  </div>
-  <% end %>
-<% end %>
+<%= render 'projects/show', projects: @projects %>
 
 <h3 class="center">Tasks</h3>
 
