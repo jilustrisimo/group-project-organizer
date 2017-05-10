@@ -3,7 +3,7 @@
 <% @projects.each do |project| %>
   <div class="card-panel hoverable">
     <% if project.completed? %>
-      <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> Project Completed</a>
+      <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> <%= project.updated_at.strftime('%A, %e %B %Y') %></a>
     <% elsif project.team_member?(current_user) %>
       <i class="material-icons teal-text">lock_open</i>
     <% else %>
