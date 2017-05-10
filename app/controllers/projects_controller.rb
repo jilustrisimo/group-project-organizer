@@ -6,7 +6,12 @@ class ProjectsController < ApplicationController
     @projects = Project.ordered
   end
 
-  def show() end
+  def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @project}
+    end
+  end
 
   def new
     @project = Project.new
