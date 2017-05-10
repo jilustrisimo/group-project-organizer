@@ -1,5 +1,5 @@
 <% if @project.completed? %>
-  <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> Project Completed</a>
+  <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> <%= project.updated_at.strftime('%A, %e %B %Y') %></a>
 <% end %><br>
 <div class="center-align">
   <h3 class="truncate">

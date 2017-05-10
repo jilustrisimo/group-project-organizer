@@ -5,7 +5,7 @@
 <% @projects.each do |project| %>
   <div class="card-panel hoverable">
     <% if project.completed? %>
-      <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> Project Completed</a>
+      <a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> <%= project.updated_at.strftime('%A, %e %B %Y') %></a>
     <% elsif project.team_member?(current_user) %>
       <i class="material-icons teal-text">lock_open</i>
     <% else %>
@@ -34,7 +34,7 @@
     <% if task.completed %>
       <%= link_to project_task_path(task.project, task, task: {completed: false}), method: :patch, class: 'btn-flat-small tooltipped waves-effect waves-teal', 'data-tooltip':'Mark Incomplete', 'data-position':'top' do %>
         <i class="material-icons teal-text">done</i>
-      <% end %><span class="teal-text">Completed</span>
+      <% end %><span class="teal-text"><strong>Completed:</strong> <%= task.updated_at.strftime('%A, %e %B %Y') %></span>
     <% elsif task.user == current_user %>
       <%= link_to project_task_path(task.project, task, task: {completed: true}), method: :patch, class: 'btn-flat tooltipped waves-effect waves-teal', 'data-tooltip':'Mark Complete', 'data-position':'top' do %>
         <i class="material-icons teal-text">turned_in</i>
