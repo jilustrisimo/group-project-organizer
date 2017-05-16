@@ -20,7 +20,7 @@
         <% end %>
       </li>
       <li><div class="divider"></div></li>
-      <li><a class="waves-effect" href="<%= projects_path %>"><i class="material-icons">list</i> View All Projects</a></li>
+      <li><a class="waves-effect all-projects" href="<%= projects_path %>"><i class="material-icons">list</i> View All Projects</a></li>
       <% if current_user.remaining_tasks_count > 0 %>
         <li><a class="waves-effect" href="/users/<%= current_user.id %>/tasks"><i class="material-icons">assignment</i> <%= pluralize(current_user.remaining_tasks_count, 'Task') %> Left to Complete</a></li>
       <% else %>
