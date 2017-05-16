@@ -26,12 +26,14 @@
     </header>
     <div class="container main">
       <div class="row">
-        <div class="col s12 m8 l10 offset-l2 offset-m2 grey lighten-4" id="main">
+        <div class="col s12 m8 l10 offset-l2 offset-m2 grey lighten-4">
           <%= render partial: 'projects/notice', locals: {notice: notice} %>
           <% if flash[:error] %>
             <p id="error"><i class="material-icons">error</i><%= flash[:error] %></p>
           <% end %>
-          <%= yield %>
+          <div id="main">
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>
