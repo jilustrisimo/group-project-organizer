@@ -21,7 +21,7 @@ function Project(project) {
   this.id = project.id
   this.title = project.title
   this.description = project.description
-  this.due_date = project.due_date
+  this.due_date = moment(project.due_date)
   this.completed = project.completed
   this.updated_at = project.updated_at
   this.project_teams = project.project_teams
@@ -37,7 +37,7 @@ Project.prototype.formatIndex = function() {
           <h3 class="break truncate"><b>${this.title}</b></h3>
           <p>${this.description}</p><br>
           <small class="left"><b>Due Date</b></small><br>
-            <p class="left" style="margin: 0">${this.due_date}</p><br>
+            <p class="left" style="margin: 0">${this.due_date.format('dddd, D MMMM YYYY')}</p><br>
         </div>
       </a>
     </div>

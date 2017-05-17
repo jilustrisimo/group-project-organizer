@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require materialize
+//= require moment
 //= require_tree .
