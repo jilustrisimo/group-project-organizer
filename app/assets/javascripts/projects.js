@@ -6,11 +6,10 @@ const bindClickHandlers = () => {
   $('.all-projects').on('click', e => {
     e.preventDefault()
     $.get('/projects.json', projects => {
-      $('#main').html('')
+      $('#main').html('<h1 class="center">All Projects</h1>')
       $.each(projects, (idx,val) => {
         let project = new Project(val)
         let projectHtml = project.formatIndex()
-        console.log(projectHtml)
         $('#main').append(projectHtml)
       })
     })
@@ -32,8 +31,16 @@ function Project(project) {
 
 Project.prototype.formatIndex = function() {
   let projectHtml = `
-  <h1 class="center">All Projects</h1>
-  <h1>${this.title}</h1>
+    <div class="card-panel hoverable">
+      <a href="/projects/${this.id}" class="show">
+        <div class="center-align">
+          <h3 class="break truncate"><b>${this.title}</b></h3>
+          <p>${this.description}</p><br>
+          <small class="left"><b>Due Date</b></small><br>
+            <p class="left" style="margin: 0">${this.due_date}</p><br>
+        </div>
+      </a>
+    </div>
   `
   return projectHtml
 }
