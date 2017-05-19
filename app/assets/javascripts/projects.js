@@ -33,20 +33,28 @@ function Project(project) {
   this.tasks = project.tasks
   this.isCompleted = project.is_completed
   this.teamMember = project.is_team_member
+  this.isPastDueDate = project.is_past_due_date
 }
 
 Project.prototype.formatIndex = function() {
-let icon
-  if (this.isCompleted){
-    icon = `<a href="#" class="teal-text bold left">
-              <i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${this.updated_at.format('dddd, D MMMM YYYY')}
-            </a> <br>`
-  } else if (this.teamMember){
-    icon = `<i class="material-icons teal-text">lock_open</i>`
-  } else {
-    icon = `<a href="/project_teams?project_id=${this.id}" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
-    <br>`
-  }
+  let icon
+    if (this.isCompleted){
+      icon = `<a href="#" class="teal-text bold left">
+                <i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${this.updated_at.format('dddd, D MMMM YYYY')}
+              </a> <br>`
+    } else if (this.teamMember){
+      icon = `<i class="material-icons teal-text">lock_open</i>`
+    } else {
+      icon = `<a href="/project_teams?project_id=${this.id}" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
+      <br>`
+    }
+
+  let dueDateFormat
+    if (this.isPastDueDate){
+      dueDateFormat = `<p class="left red-text" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
+    } else {
+      dueDateFormat = `<p class="left" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
+    }
 
   let projectHtml = `
     <div class="card-panel hoverable">
@@ -56,7 +64,7 @@ let icon
           <h3 class="break truncate"><b>${this.title}</b></h3>
           <p>${this.description}</p><br>
           <small class="left"><b>Due Date</b></small><br>
-            <p class="left" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>
+          ${dueDateFormat}
         </div>
       </a>
     </div>
