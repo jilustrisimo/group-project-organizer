@@ -1,26 +1,3 @@
-$(() => {
-  bindClickHandlers()
-})
-
-const bindClickHandlers = () => {
-  $('.all-projects').on('click', e => {
-    e.preventDefault()
-    $.get('/projects.json', projects => {
-      $('#main').html('<h1 class="center">All Projects</h1>')
-      $.each(projects, (idx,val) => {
-        let project = new Project(val)
-        let projectHtml = project.formatIndex()
-        $('#main').append(projectHtml)
-      })
-    })
-  })
-
-  // $('.show').on('click', e => {
-  //   e.preventDefault()
-
-  // })
-}
-
 function Project(project) {
   this.id = project.id
   this.title = project.title
@@ -59,7 +36,7 @@ Project.prototype.formatIndex = function() {
   let projectHtml = `
     <div class="card-panel hoverable">
       ${icon}
-      <a href="/projects/${this.id}" class="show">
+      <a href="/projects/${this.id}" class="show" id="${this.id}">
         <div class="center-align">
           <h3 class="break truncate"><b>${this.title}</b></h3>
           <p>${this.description}</p><br>
@@ -72,6 +49,36 @@ Project.prototype.formatIndex = function() {
   return projectHtml
 }
 
-// Project.prototype.formatShow = function() {
-//   let 
-// }
+Project.prototype.formatShow = function() {
+  let 
+}
+
+const bindClickHandlers = () => {
+  $('.all-projects').on('click', e => {
+    e.preventDefault()
+    $.get('/projects.json', projects => {
+      $('#main').html('<h1 class="center">All Projects</h1>')
+      $.each(projects, (idx,val) => {
+        let project = new Project(val)
+        let projectHtml = project.formatIndex()
+        $('#main').append(projectHtml)
+      })
+      bindShowListeners()
+    })
+  })
+}
+
+const bindShowListeners = () => {
+  $('.show').on('click', e => {
+    e.preventDefault()
+    let id = e.currentTarget.id
+    $.get('/projects/' + id + '.json', project => {
+      $('#main').html('')
+      console.log(project)
+    })
+  })
+}
+
+$(() => {
+  bindClickHandlers()
+})
