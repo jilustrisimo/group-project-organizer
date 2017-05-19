@@ -1,6 +1,7 @@
 class ProjectSerializer < ActiveModel::Serializer
   attributes :id, :title, :is_completed, :description,
-             :due_date, :completed, :updated_at, :is_team_member
+             :due_date, :completed, :updated_at, :is_team_member,
+             :is_past_due_date
 
   has_many :project_teams, dependent: :destroy
   has_many :team_members, through: :project_teams, source: :user
@@ -14,4 +15,7 @@ class ProjectSerializer < ActiveModel::Serializer
     object.completed?
   end
 
+  def is_past_due_date
+    object.due_date <= Date.tomorrow && object.completed != true
+  end
 end
