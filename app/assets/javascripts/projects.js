@@ -27,7 +27,7 @@ function Project(project) {
   this.description = project.description
   this.dueDate = moment(project.due_date)
   this.completed = project.completed
-  this.updated_at = moment(project.updated_at)
+  this.updatedAt = moment(project.updated_at)
   this.project_teams = project.project_teams
   this.teamMembers = project.team_members
   this.tasks = project.tasks
@@ -40,7 +40,7 @@ Project.prototype.formatIndex = function() {
   let icon
     if (this.isCompleted){
       icon = `<a href="#" class="teal-text bold left">
-                <i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${this.updated_at.format('dddd, D MMMM YYYY')}
+                <i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${this.updatedAt.format('dddd, D MMMM YYYY')}
               </a> <br>`
     } else if (this.teamMember){
       icon = `<i class="material-icons teal-text">lock_open</i>`
