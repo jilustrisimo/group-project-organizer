@@ -14,24 +14,43 @@ const bindClickHandlers = () => {
       })
     })
   })
+
+  // $('.show').on('click', e => {
+  //   e.preventDefault()
+
+  // })
 }
 
 function Project(project) {
-  // id, description, due_date, completed, updated_at, project_teams, project_members, tasks
   this.id = project.id
   this.title = project.title
   this.description = project.description
   this.due_date = moment(project.due_date)
   this.completed = project.completed
-  this.updated_at = project.updated_at
+  this.updated_at = moment(project.updated_at)
   this.project_teams = project.project_teams
   this.team_members = project.team_members
   this.tasks = project.tasks
+  this.isCompleted = project.is_completed
+  this.teamMember = project.is_team_member
 }
 
 Project.prototype.formatIndex = function() {
+let icon
+  if (this.isCompleted){
+    icon = `<a href="#" class="teal-text bold left">
+              <i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${this.updated_at.format('dddd, D MMMM YYYY')}
+            </a> <br>`
+  } else if (this.teamMember){
+    icon = `<i class="material-icons teal-text">lock_open</i>`
+  } else {
+    icon = `<a href="/project_teams?project_id=${this.id}" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
+    <br>`
+  }
+
   let projectHtml = `
     <div class="card-panel hoverable">
+      ${icon}
       <a href="/projects/${this.id}" class="show">
         <div class="center-align">
           <h3 class="break truncate"><b>${this.title}</b></h3>
@@ -45,4 +64,6 @@ Project.prototype.formatIndex = function() {
   return projectHtml
 }
 
-// Project.prototype.
+// Project.prototype.formatShow = function() {
+//   let 
+// }
