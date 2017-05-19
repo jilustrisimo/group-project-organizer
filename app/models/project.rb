@@ -23,7 +23,7 @@ class Project < ApplicationRecord
 
   def completed?
     if completed && !tasks.all?(&:completed) && tasks.count > 0
-      update(complated: false)
+      update(completed: false)
     elsif !completed && tasks.all?(&:completed) && tasks.count > 0
       update(completed: true)
     else
