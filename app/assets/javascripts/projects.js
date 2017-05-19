@@ -50,7 +50,39 @@ Project.prototype.formatIndex = function() {
 }
 
 Project.prototype.formatShow = function() {
-  let 
+  let completedIcon
+    if (this.isCompleted) {
+      completedIcon = `<a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${this.updatedAt.format('dddd, D MMMM YYYY')}</a>
+      <br>`
+    }
+  
+  let projectDetails = `
+    <div class="center-align">
+    <h3 class="truncate">
+      ${this.title}
+    </h3>
+
+    <h5>
+      ${this.description}
+    </h5>`
+    
+    
+  let projectDueDate
+    if (this.isPastDueDate){
+      projectDueDate = `
+      <p class="left red-text" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
+    } else {
+      projectDueDate = `
+      <p class="left" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
+    }
+
+  let formatShow = `
+    ${completedIcon}
+    ${projectDetails}
+    <p class="left-align">
+      <strong>Due date</strong><br>
+      ${projectDueDate}
+    <div class="divider"></div>`
 }
 
 const bindClickHandlers = () => {
@@ -74,7 +106,7 @@ const bindShowListeners = () => {
     let id = e.currentTarget.id
     $.get('/projects/' + id + '.json', project => {
       $('#main').html('')
-      console.log(project)
+      let projectShowHtml = project.formatShow()
     })
   })
 }
