@@ -25,11 +25,11 @@ function Project(project) {
   this.id = project.id
   this.title = project.title
   this.description = project.description
-  this.due_date = moment(project.due_date)
+  this.dueDate = moment(project.due_date)
   this.completed = project.completed
   this.updated_at = moment(project.updated_at)
   this.project_teams = project.project_teams
-  this.team_members = project.team_members
+  this.teamMembers = project.team_members
   this.tasks = project.tasks
   this.isCompleted = project.is_completed
   this.teamMember = project.is_team_member
@@ -56,7 +56,7 @@ let icon
           <h3 class="break truncate"><b>${this.title}</b></h3>
           <p>${this.description}</p><br>
           <small class="left"><b>Due Date</b></small><br>
-            <p class="left" style="margin: 0">${this.due_date.format('dddd, D MMMM YYYY')}</p><br>
+            <p class="left" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>
         </div>
       </a>
     </div>
