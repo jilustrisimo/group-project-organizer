@@ -11,6 +11,8 @@ function Project(project) {
   this.isCompleted = project.is_completed
   this.teamMember = project.is_team_member
   this.isPastDueDate = project.is_past_due_date
+  this.remainingTasks = project.remaining_tasks_count
+  this.unassignedTasks = project.unassigned_tasks_count
 }
 
 Project.prototype.formatIndex = function() {
@@ -54,7 +56,7 @@ Project.prototype.formatShow = function() {
     if (this.isCompleted) {
       completedIcon = `<a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${this.updatedAt.format('dddd, D MMMM YYYY')}</a>
       <br>`
-    }
+    } else { completedIcon = ''}
   
   let projectDetails = `
     <div class="center-align">
@@ -93,7 +95,16 @@ Project.prototype.formatShow = function() {
           <th>Total</th>
         </tr>
       </thead>
-    `
+      <tr>
+        <td>${this.remainingTasks}</td>
+        <td>${this.unassignedTasks}</td>
+        <td>${this.remainingTasks - this.unassignedTasks}</td>
+        <td>${this.tasks.length}</td>
+      </tr>
+    </table>
+  </div>
+  `
+  return formatShow
 }
 
 const bindClickHandlers = () => {
@@ -115,9 +126,12 @@ const bindShowListeners = () => {
   $('.show').on('click', e => {
     e.preventDefault()
     let id = e.currentTarget.id
-    $.get('/projects/' + id + '.json', project => {
+    $.get('/projects/' + id + '.json', val => {
       $('#main').html('')
+      let project = new Project(val)
       let projectShowHtml = project.formatShow()
+      $('#main').append(projectShowHtml)
+      debugger
     })
   })
 }
