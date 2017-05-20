@@ -82,7 +82,18 @@ Project.prototype.formatShow = function() {
     <p class="left-align">
       <strong>Due date</strong><br>
       ${projectDueDate}
-    <div class="divider"></div>`
+    <div class="divider"></div>
+      <table style="table-layout: fixed; margin-top: 10px">
+      <caption style="font-size: 160%">Tasks Overview</caption>
+      <thead>
+        <tr>
+          <th>Incompleted</th>
+          <th>Unassigned</th>
+          <th>Completed</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+    `
 }
 
 const bindClickHandlers = () => {
