@@ -78,6 +78,11 @@ Project.prototype.formatShow = function() {
       <p class="left" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
     }
 
+  let projectTasks =
+    this.tasks.forEach( task => {
+      console.log(task)
+    })
+
   let formatShow = `
     ${completedIcon}
     ${projectDetails}
@@ -103,6 +108,7 @@ Project.prototype.formatShow = function() {
       </tr>
     </table>
   </div>
+  ${projectTasks}
   `
   return formatShow
 }
