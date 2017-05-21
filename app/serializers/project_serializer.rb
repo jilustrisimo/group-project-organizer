@@ -19,4 +19,8 @@ class ProjectSerializer < ActiveModel::Serializer
     object.due_date <= Date.tomorrow && object.completed != true
   end
 
+  def tasks
+    object.tasks.ordered
+  end
+
 end
