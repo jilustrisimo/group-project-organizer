@@ -15,43 +15,41 @@ function Project(project) {
   this.unassignedTasks = project.unassigned_tasks_count
 }
 
-Project.prototype.formatTasks = function() {
-  this.tasks.forEach( task => {
-    let taskIcon
-      if (task.completed) {
-        taskIcon = `
-          <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Incomplete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=false">
-            <i class="material-icons teal-text">done</i><span class="teal-text"><strong>Completed:</strong> ${task.updated_at}</span>
-          </a>`
-      } else if (task.user_id == null) {
-        taskIcon = `
-          <a href="/users/${$('#main').data('user')}/tasks/${task.id}/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a>`
-      } else if (task.is_current_user_task) {
-        taskIcon = `
-          <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Complete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=true">
-            <i class="material-icons teal-text">turned_in</i>
-          </a>`
-      }
+Project.prototype.formatTasks = function(task) {
+  let taskIcon
+    if (task.completed) {
+      taskIcon = `
+        <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Incomplete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=false">
+          <i class="material-icons teal-text">done</i><span class="teal-text"><strong>Completed:</strong> ${task.updated_at}</span>
+        </a><br>`
+    } else if (task.user_id == null) {
+      taskIcon = `
+        <a href="/users/${$('#main').data('user')}/tasks/${task.id}/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a><br>`
+    } else if (task.is_current_user_task) {
+      taskIcon = `
+        <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Complete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=true">
+          <i class="material-icons teal-text">turned_in</i>
+        </a><br>`
+    } else {taskIcon=''}
 
-    let taskDueDate
-      if (task.is_past_due_date){
-        taskDueDate = `<p class="left red-text" style="margin: 0">${task.due_date}</p><br>`
-      } else {
-        taskDueDate = `<p class="left" style="margin: 0">${task.due_date}</p><br>`
-      }
+  let taskDueDate
+    if (task.is_past_due_date){
+      taskDueDate = `<p class="left red-text" style="margin: 0">${task.due_date}</p><br>`
+    } else {
+      taskDueDate = `<p class="left" style="margin: 0">${task.due_date}</p><br>`
+    }
 
-    let taskFormat = `
-    <div class="card-panel hoverable center-align">
-      ${taskIcon}
-      <a href="/projects/${task.project_id}/tasks/${task.id}/edit">
-        <h5 class="truncate"><b>${task.title}e</b></h5>
-        <p>${task.content}</p>
-        <small class="left"><b>Due Date</b></small><br>
-        ${taskDueDate}
-      </a>`
+  let taskFormat = `
+  <div class="card-panel hoverable center-align">
+    ${taskIcon}
+    <a href="/projects/${task.project_id}/tasks/${task.id}/edit">
+      <h5 class="truncate"><b>${task.title}e</b></h5>
+      <p>${task.content}</p>
+      <small class="left"><b>Due Date</b></small><br>
+      ${taskDueDate}
+    </a>`
 
-    return taskFormat
-  })
+  return taskFormat
 }
 
 Project.prototype.formatIndex = function() {
@@ -143,7 +141,6 @@ Project.prototype.formatShow = function() {
       </tr>
     </table>
   </div>
-  ${this.formatTasks()}
   `
   return projectShowHtml
 }
@@ -172,6 +169,10 @@ const bindShowListeners = () => {
       let project = new Project(val)
       let projectShowHtml = project.formatShow()
       $('#main').append(projectShowHtml)
+      $.each(project.tasks, (idx,task) => {
+        let taskHtml = project.formatTasks(task)
+        $('#main').append(taskHtml)
+      })
     })
   })
 }
