@@ -34,15 +34,21 @@ Project.prototype.formatTasks = function() {
       }
 
     let taskDueDate
+      if (task.is_past_due_date){
+        taskDueDate = `<p class="left red-text" style="margin: 0">${task.due_date}</p><br>`
+      } else {
+        taskDueDate = `<p class="left" style="margin: 0">${task.due_date}</p><br>`
+      }
 
     let taskFormat = `
     <div class="card-panel hoverable center-align">
-    ${taskIcon}
-    <a href="/projects/${task.project_id}/tasks/${task.id}/edit">
-      <h5 class="truncate"><b>${task.title}e</b></h5>
-      <p>${task.content}</p>
-      <small class="left"><b>Due Date</b></small><br>
-    </a>`
+      ${taskIcon}
+      <a href="/projects/${task.project_id}/tasks/${task.id}/edit">
+        <h5 class="truncate"><b>${task.title}e</b></h5>
+        <p>${task.content}</p>
+        <small class="left"><b>Due Date</b></small><br>
+        ${taskDueDate}
+      </a>`
 
     return taskFormat
   })
