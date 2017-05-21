@@ -15,6 +15,17 @@ function Project(project) {
   this.unassignedTasks = project.unassigned_tasks_count
 }
 
+Project.prototype.formatTasks = function() {
+  let taskIcon
+    this.tasks.forEach( task => {
+      if (task.completed) {
+        taskIcon = `<a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Incomplete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${project.id}/tasks/${this.id}?task%5Bcompleted%5D=false">
+          <i class="material-icons teal-text">done</i><span class="teal-text"><strong>Completed:</strong> ${task.updated_at}</span>
+        </a>`
+      }
+    })
+}
+
 Project.prototype.formatIndex = function() {
   let icon
     if (this.isCompleted){
@@ -78,10 +89,6 @@ Project.prototype.formatShow = function() {
       <p class="left" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
     }
 
-  let projectTasks =
-    this.tasks.forEach( task => {
-      console.log(task)
-    })
 
   let formatShow = `
     ${completedIcon}
@@ -108,7 +115,8 @@ Project.prototype.formatShow = function() {
       </tr>
     </table>
   </div>
-  ${projectTasks}
+  <div class="card-panel hoverable center-align">
+  $//{projectTasks}
   `
   return formatShow
 }
@@ -120,6 +128,7 @@ const bindClickHandlers = () => {
       $('#main').html('<h1 class="center">All Projects</h1>')
       $.each(projects, (idx,val) => {
         let project = new Project(val)
+        debugger
         let projectHtml = project.formatIndex()
         $('#main').append(projectHtml)
       })
@@ -137,7 +146,6 @@ const bindShowListeners = () => {
       let project = new Project(val)
       let projectShowHtml = project.formatShow()
       $('#main').append(projectShowHtml)
-      debugger
     })
   })
 }
