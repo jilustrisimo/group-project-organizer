@@ -23,7 +23,7 @@ Project.prototype.formatTasks = function() {
           <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Incomplete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=false">
             <i class="material-icons teal-text">done</i><span class="teal-text"><strong>Completed:</strong> ${task.updated_at}</span>
           </a>`
-      } else if (task.user == null) {
+      } else if (task.user_id == null) {
         taskIcon = `
           <a href="/users/${$('#main').data('user')}/tasks/${task.id}/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a>`
       } else if (task.is_current_user_task) {
