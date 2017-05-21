@@ -1,6 +1,7 @@
 class TaskSerializer < ActiveModel::Serializer
   attributes :id, :title, :content, :due_date, :completed,
-             :updated_at, :user_id, :is_current_user_task
+             :updated_at, :user_id, :is_current_user_task,
+             :project_id
 
   belongs_to :user
   belongs_to :project
