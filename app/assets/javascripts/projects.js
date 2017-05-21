@@ -99,7 +99,7 @@ Project.prototype.formatShow = function() {
     }
 
 
-  let formatShow = `
+  let projectShowHtml = `
     ${completedIcon}
     ${projectDetails}
     <p class="left-align">
@@ -126,7 +126,7 @@ Project.prototype.formatShow = function() {
   </div>
   ${this.formatTasks()}
   `
-  return formatShow
+  return projectShowHtml
 }
 
 const bindClickHandlers = () => {
