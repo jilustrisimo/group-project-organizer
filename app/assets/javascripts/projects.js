@@ -32,6 +32,19 @@ Project.prototype.formatTasks = function() {
             <i class="material-icons teal-text">turned_in</i>
           </a>`
       }
+
+    let taskDueDate
+
+    let taskFormat = `
+    <div class="card-panel hoverable center-align">
+    ${taskIcon}
+    <a href="/projects/${task.project_id}/tasks/${task.id}/edit">
+      <h5 class="truncate"><b>${task.title}e</b></h5>
+      <p>${task.content}</p>
+      <small class="left"><b>Due Date</b></small><br>
+    </a>`
+
+    return taskFormat
   })
 }
 
