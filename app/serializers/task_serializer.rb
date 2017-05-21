@@ -8,4 +8,12 @@ class TaskSerializer < ActiveModel::Serializer
   def is_current_user_task
     object.user == current_user
   end
+
+  def updated_at
+    object.updated_at.strftime('%A, %e %B %Y')
+  end
+
+  def due_date
+    object.due_date.strftime('%A, %e %B %Y')
+  end
 end
