@@ -1,7 +1,7 @@
 class TaskSerializer < ActiveModel::Serializer
   attributes :id, :title, :content, :due_date, :completed,
              :updated_at, :user_id, :is_current_user_task,
-             :project_id
+             :project_id, :is_past_due_date
 
   belongs_to :user
   belongs_to :project
@@ -16,5 +16,9 @@ class TaskSerializer < ActiveModel::Serializer
 
   def due_date
     object.due_date.strftime('%A, %e %B %Y')
+  end
+
+  def is_past_due_date
+    object.due_date <= Date.tomorrow && object.completed != true
   end
 end
