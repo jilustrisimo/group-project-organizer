@@ -181,6 +181,7 @@ Project.prototype.formatShow = function() {
 const bindClickHandlers = () => {
   $('.all-projects').on('click', e => {
     e.preventDefault()
+    history.pushState(null, null, '/projects')
     $.get('/projects.json', projects => {
       $('#main').html('<h1 class="center">All Projects</h1>')
       $.each(projects, (idx,val) => {
@@ -198,6 +199,7 @@ const bindShowListeners = () => {
   $('.show').on('click', e => {
     e.preventDefault()
     let id = e.currentTarget.id
+    history.pushState(null, null, `/projects/${id}`)
     $.get('/projects/' + id + '.json', val => {
       $('#main').html('')
       let project = new Project(val)
