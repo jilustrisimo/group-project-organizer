@@ -6,6 +6,7 @@ function Project(project) {
   this.completed = project.completed
   this.updatedAt = moment(project.updated_at)
   this.project_teams = project.project_teams
+  this.team = project.team
   this.teamMembers = project.team_members
   this.tasks = project.tasks
   this.isCompleted = project.is_completed
@@ -127,6 +128,7 @@ Project.prototype.formatShow = function() {
     <p class="left-align">
       <strong>Due date</strong><br>
       ${projectDueDate}
+    </p>
     <div class="divider"></div>
       <table style="table-layout: fixed; margin-top: 10px">
       <caption style="font-size: 160%">Tasks Overview</caption>
@@ -161,6 +163,7 @@ const bindClickHandlers = () => {
         $('#main').append(projectHtml)
       })
       bindShowListeners()
+      $('.tooltipped').tooltip({delay: 50})
     })
   })
 }
@@ -178,6 +181,7 @@ const bindShowListeners = () => {
         let taskHtml = project.formatTasks(task)
         $('#main').append(taskHtml)
       })
+      $('.tooltipped').tooltip({delay: 50})
     })
   })
 }
