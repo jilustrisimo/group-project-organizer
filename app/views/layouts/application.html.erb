@@ -31,7 +31,9 @@
           <% if flash[:error] %>
             <p id="error"><i class="material-icons">error</i><%= flash[:error] %></p>
           <% end %>
-          <%= yield %>
+          <div id="main" data-user="<%= current_user.id if current_user %>">
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>

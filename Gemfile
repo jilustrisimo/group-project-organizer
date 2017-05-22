@@ -42,6 +42,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'font-awesome-rails'
 gem 'active_model_serializers'
+gem 'momentjs-rails'
 
 
 # Use Capistrano for deployment
