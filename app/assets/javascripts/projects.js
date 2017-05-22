@@ -214,4 +214,5 @@ const bindShowListeners = () => {
 
 $(() => {
   bindClickHandlers()
+  bindShowListeners()
 })
