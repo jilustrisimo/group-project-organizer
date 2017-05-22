@@ -1,7 +1,7 @@
 class TaskSerializer < ActiveModel::Serializer
   attributes :id, :title, :content, :due_date, :completed,
              :updated_at, :user_id, :is_current_user_task,
-             :project_id, :is_past_due_date
+             :project_id, :is_past_due_date, :user
 
   belongs_to :user
   belongs_to :project
@@ -20,5 +20,9 @@ class TaskSerializer < ActiveModel::Serializer
 
   def is_past_due_date
     object.due_date <= Date.tomorrow && object.completed != true
+  end
+
+  def user
+    object.user.nil? ? nil : object.user.username
   end
 end
