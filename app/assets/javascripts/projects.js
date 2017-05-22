@@ -20,6 +20,16 @@ function Project(project) {
 
 //// PROTOTYPE METHODS ////
 
+Project.prototype.formatDueDate = function() {
+    let dueDateFormat
+    if (this.isPastDueDate){
+      dueDateFormat = `<p class="left red-text" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
+    } else {
+      dueDateFormat = `<p class="left" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
+    }
+    return dueDateFormat
+}
+
 Project.prototype.formatTasks = function(task) {
   let taskIcon
     if (task.completed) {
@@ -76,13 +86,6 @@ Project.prototype.formatIndex = function() {
       <br>`
     }
 
-  let dueDateFormat
-    if (this.isPastDueDate){
-      dueDateFormat = `<p class="left red-text" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
-    } else {
-      dueDateFormat = `<p class="left" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
-    }
-
   let projectHtml = `
     <div class="card-panel hoverable">
       ${icon}
@@ -91,7 +94,7 @@ Project.prototype.formatIndex = function() {
           <h3 class="break truncate"><b>${this.title}</b></h3>
           <p>${this.description}</p><br>
           <small class="left"><b>Due Date</b></small><br>
-          ${dueDateFormat}
+          ${this.formatDueDate()}
         </div>
       </a>
     </div>
@@ -115,23 +118,13 @@ Project.prototype.formatShow = function() {
     <h5>
       ${this.description}
     </h5>`
-    
-    
-  let projectDueDate
-    if (this.isPastDueDate){
-      projectDueDate = `
-      <p class="left red-text" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
-    } else {
-      projectDueDate = `
-      <p class="left" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
-    }
 
   let projectShowHtml = `
     ${completedIcon}
     ${projectDetails}
     <p class="left-align">
       <strong>Due date</strong><br>
-      ${projectDueDate}
+      ${this.formatDueDate()}
     </p>
     <div class="divider"></div>
       <table style="table-layout: fixed; margin-top: 10px">
@@ -186,7 +179,6 @@ const bindClickHandlers = () => {
       $('#main').html('<h1 class="center">All Projects</h1>')
       $.each(projects, (idx,val) => {
         let project = new Project(val)
-        debugger
         let projectHtml = project.formatIndex()
         $('#main').append(projectHtml)
       })
