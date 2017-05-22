@@ -39,12 +39,15 @@ Project.prototype.formatTasks = function(task) {
       taskDueDate = `<p class="left" style="margin: 0">${task.due_date}</p><br>`
     }
 
+  let username = (task.user == null) ? '' : `<p><strong>Assigned to:</strong> ${task.user}</p>`
+
   let taskFormat = `
   <div class="card-panel hoverable center-align">
     ${taskIcon}
     <a href="/projects/${task.project_id}/tasks/${task.id}/edit">
       <h5 class="truncate"><b>${task.title}e</b></h5>
       <p>${task.content}</p>
+      ${username}
       <small class="left"><b>Due Date</b></small><br>
       ${taskDueDate}
       <a class="right btn-flat-small waves-effect waves-red" data-confirm="Are you sure you want to delete ${task.title}?" rel="nofollow" data-method="delete" href="/projects/${task.project_id}/tasks/${task.id}">
@@ -117,7 +120,6 @@ Project.prototype.formatShow = function() {
       projectDueDate = `
       <p class="left" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
     }
-
 
   let projectShowHtml = `
     ${completedIcon}
