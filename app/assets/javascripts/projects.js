@@ -44,7 +44,7 @@ Project.prototype.formatTasks = function(task) {
       taskDueDate = `<p class="left" style="margin: 0">${task.due_date}</p><br>`
     }
 
-  let username = (task.user == null) ? '' : `<p><strong>Assigned to:</strong> ${task.user}</p>`
+  let username = task.user ? `<p><strong>Assigned to:</strong> ${task.user}</p>` : ''
 
   let taskFormat = `
   <div class="card-panel hoverable center-align">
@@ -186,6 +186,7 @@ const bindClickHandlers = () => {
       $('#main').html('<h1 class="center">All Projects</h1>')
       $.each(projects, (idx,val) => {
         let project = new Project(val)
+        debugger
         let projectHtml = project.formatIndex()
         $('#main').append(projectHtml)
       })
