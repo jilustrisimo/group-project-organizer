@@ -148,6 +148,26 @@ Project.prototype.formatShow = function() {
       </tr>
     </table>
   </div>
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large teal accent-4">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a href="/projects/${this.id}/tasks/new" class="btn-floating tooltipped green" data-tooltip="create a new task" data-position="left"><i class="material-icons">note_add</i></a></li>
+      <li><a href="/projects/${this.id}/edit" class="btn-floating tooltipped yellow" data-tooltip="edit project" data-position="left"><i class="material-icons">mode_edit</i></a>
+      </li>
+      <li>
+        <a class="btn-floating tooltipped red" data-tooltip="delete project" data-position="left" data-confirm="Are you sure you want to delete ${this.title} and all its tasks?" rel="nofollow" data-method="delete" href="/projects/${this.id}">
+            <i class="material-icons">delete</i>
+        </a>
+      </li>
+      <li>
+        <a class="btn-floating tooltipped orange" data-tooltip="leave project team" data-position="left" data-confirm="Are you sure you want to leave ${this.title}'s team?" rel="nofollow" data-method="delete" href="/project_teams/${this.team}">
+          <i class="material-icons">fast_rewind</i>
+        </a>
+      </li>
+    </ul>
+  </div>
   `
   return projectShowHtml
 }
