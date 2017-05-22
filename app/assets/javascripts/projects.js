@@ -1,3 +1,5 @@
+//// CONSTRUCTOR ////
+
 function Project(project) {
   this.id = project.id
   this.title = project.title
@@ -15,6 +17,8 @@ function Project(project) {
   this.remainingTasks = project.remaining_tasks_count
   this.unassignedTasks = project.unassigned_tasks_count
 }
+
+//// PROTOTYPE METHODS ////
 
 Project.prototype.formatTasks = function(task) {
   let taskIcon
@@ -171,6 +175,8 @@ Project.prototype.formatShow = function() {
   `
   return projectShowHtml
 }
+
+//// EVENT LISTENERS ////
 
 const bindClickHandlers = () => {
   $('.all-projects').on('click', e => {
