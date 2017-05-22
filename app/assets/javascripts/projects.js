@@ -47,6 +47,9 @@ Project.prototype.formatTasks = function(task) {
       <p>${task.content}</p>
       <small class="left"><b>Due Date</b></small><br>
       ${taskDueDate}
+      <a class="right btn-flat-small waves-effect waves-red" data-confirm="Are you sure you want to delete ${task.title}?" rel="nofollow" data-method="delete" href="/projects/${task.project_id}/tasks/${task.id}">
+        <i class="material-icons">delete</i>
+      </a><br>
     </a>`
 
   return taskFormat
