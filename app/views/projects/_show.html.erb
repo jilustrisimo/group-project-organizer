@@ -7,7 +7,7 @@
     <% else %>
       <a href="<%= project_teams_path(project_id: project.id) %>" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
     <% end %><br>
-    <%= link_to project do %>
+    <%= link_to project, class:'show', id:"#{project.id}" do %>
     <div class="center-align">
       <h3 class="break truncate"><b><%= project.title %></b></h3>
       <p><%= project.description %></p><br>
