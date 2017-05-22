@@ -1,5 +1,5 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :id, :title, :is_completed, :description,
+  attributes :id, :title, :is_completed, :description, :team,
              :due_date, :completed, :updated_at, :is_team_member,
              :is_past_due_date, :remaining_tasks_count, :unassigned_tasks_count
 
@@ -21,6 +21,10 @@ class ProjectSerializer < ActiveModel::Serializer
 
   def tasks
     object.tasks.ordered
+  end
+
+  def team
+    ProjectTeam.team_id(current_user, object).pluck(:id).join
   end
 
 end
