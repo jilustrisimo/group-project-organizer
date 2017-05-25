@@ -21,7 +21,7 @@ function Project(project) {
 //// PROTOTYPE METHODS ////
 
 Project.prototype.formatDueDate = function() {
-    let dueDateFormat
+  let dueDateFormat
     if (this.isPastDueDate){
       dueDateFormat = `<p class="left red-text" style="margin: 0">${this.dueDate.format('dddd, D MMMM YYYY')}</p><br>`
     } else {
