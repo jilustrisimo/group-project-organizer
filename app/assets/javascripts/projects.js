@@ -128,53 +128,53 @@ Project.prototype.formatShow = function() {
 //// HELPER FUNCTIONS ////
 
 const indexIcon = project => {
-    if (project.isCompleted){
-      return `<a href="#" class="teal-text bold left">
-                <i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${project.updatedAt.format('dddd, D MMMM YYYY')}
-              </a> <br>`
-    } else if (project.teamMember){
-      return `<i class="material-icons teal-text">lock_open</i>`
-    } else {
-      return `<a href="/project_teams?project_id=${project.id}" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
-      <br>`
-    }
+  if (project.isCompleted){
+    return `<a href="#" class="teal-text bold left">
+              <i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${project.updatedAt.format('dddd, D MMMM YYYY')}
+            </a> <br>`
+  } else if (project.teamMember){
+    return `<i class="material-icons teal-text">lock_open</i>`
+  } else {
+    return `<a href="/project_teams?project_id=${project.id}" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
+    <br>`
+  }
 }
 
 const taskIcon = task => {
 
-    if (task.completed) {
-      return `
-        <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Incomplete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=false">
-          <i class="material-icons teal-text">done</i><span class="teal-text"><strong>Completed:</strong> ${task.updated_at}</span>
-        </a><br>`
-    } else if (task.user_id == null) {
-      return `
-        <a href="/users/${$('#main').data('user')}/tasks/${task.id}/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a><br>`
-    } else if (task.is_current_user_task) {
-      return `
-        <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Complete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=true">
-          <i class="material-icons teal-text">turned_in</i>
-        </a><br>`
-    } else {
-      return ''
-    }
+  if (task.completed) {
+    return `
+      <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Incomplete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=false">
+        <i class="material-icons teal-text">done</i><span class="teal-text"><strong>Completed:</strong> ${task.updated_at}</span>
+      </a><br>`
+  } else if (task.user_id == null) {
+    return `
+      <a href="/users/${$('#main').data('user')}/tasks/${task.id}/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a><br>`
+  } else if (task.is_current_user_task) {
+    return `
+      <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Complete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=true">
+        <i class="material-icons teal-text">turned_in</i>
+      </a><br>`
+  } else {
+    return ''
+  }
 }
 
 const taskDueDate = task => {
-    if (task.is_past_due_date){
-      return `<p class="left red-text" style="margin: 0">${task.due_date}</p><br>`
-    } else {
-      return `<p class="left" style="margin: 0">${task.due_date}</p><br>`
-    }
+  if (task.is_past_due_date){
+    return `<p class="left red-text" style="margin: 0">${task.due_date}</p><br>`
+  } else {
+    return `<p class="left" style="margin: 0">${task.due_date}</p><br>`
+  }
 }
 
 const completedIcon = project => {
-    if (project.isCompleted) {
-      return `<a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${project.updatedAt.format('dddd, D MMMM YYYY')}</a>
-      <br>`
-    } else { 
-      return ''
-    }
+  if (project.isCompleted) {
+    return `<a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${project.updatedAt.format('dddd, D MMMM YYYY')}</a>
+    <br>`
+  } else { 
+    return ''
+  }
 }
 
 const appendProject = data => {
