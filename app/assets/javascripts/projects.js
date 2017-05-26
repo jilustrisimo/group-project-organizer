@@ -31,21 +31,6 @@ Project.prototype.formatDueDate = function() {
 }
 
 Project.prototype.formatTasks = function(task) {
-  let taskIcon
-    if (task.completed) {
-      taskIcon = `
-        <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Incomplete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=false">
-          <i class="material-icons teal-text">done</i><span class="teal-text"><strong>Completed:</strong> ${task.updated_at}</span>
-        </a><br>`
-    } else if (task.user_id == null) {
-      taskIcon = `
-        <a href="/users/${$('#main').data('user')}/tasks/${task.id}/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a><br>`
-    } else if (task.is_current_user_task) {
-      taskIcon = `
-        <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Complete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=true">
-          <i class="material-icons teal-text">turned_in</i>
-        </a><br>`
-    } else {taskIcon=''}
 
   let taskDueDate
     if (task.is_past_due_date){
@@ -58,7 +43,7 @@ Project.prototype.formatTasks = function(task) {
 
   let taskFormat = `
   <div class="card-panel hoverable center-align">
-    ${taskIcon}
+    ${taskIcon(task)}
     <a href="/projects/${task.project_id}/tasks/${task.id}/edit">
       <h5 class="truncate"><b>${task.title}e</b></h5>
       <p>${task.content}</p>
@@ -169,6 +154,26 @@ const indexIcon = project => {
     } else {
       return `<a href="/project_teams?project_id=${project.id}" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
       <br>`
+    }
+}
+
+const taskIcon = task => {
+
+    if (task.completed) {
+      return `
+        <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Incomplete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=false">
+          <i class="material-icons teal-text">done</i><span class="teal-text"><strong>Completed:</strong> ${task.updated_at}</span>
+        </a><br>`
+    } else if (task.user_id == null) {
+      return `
+        <a href="/users/${$('#main').data('user')}/tasks/${task.id}/edit" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="assign yourself to this task" data-position="top"><i class="material-icons">add</i></a><br>`
+    } else if (task.is_current_user_task) {
+      return `
+        <a class="btn-flat-small tooltipped waves-effect waves-teal left" data-tooltip="Mark Complete" data-position="top" rel="nofollow" data-method="patch" href="/projects/${task.project_id}/tasks/${task.id}?task%5Bcompleted%5D=true">
+          <i class="material-icons teal-text">turned_in</i>
+        </a><br>`
+    } else {
+      return ''
     }
 }
 
