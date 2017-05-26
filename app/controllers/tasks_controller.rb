@@ -16,7 +16,7 @@ class TasksController < ApplicationController
   def create
     @task = @project.tasks.build(task_params)
     notice = 'Task was successfully created.'
-    @task.save ? (redirect_to @project, notice: notice) : (render :new)
+    @task.save ? (render json: @project) : (render :new)
   end
 
   def update
