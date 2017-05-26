@@ -186,6 +186,23 @@ const bindClickHandlers = () => {
       $('.tooltipped').tooltip({delay: 50})
     })
   })
+
+  $('#new_task').on('submit', e => {
+    e.preventDefault()
+    let id = e.currentTarget.id
+    history.pushState(null, null, `/projects/${id}`)
+    $.post(e.currentTarget.action, $(e.target).serialize(), resp => {
+      $('#main').html('')
+      let project = new Project(resp)
+      let projectShowHtml = project.formatShow()
+      $('#main').append(projectShowHtml)
+      $.each(project.tasks, (idx,task) => {
+        let taskHtml = project.formatTasks(task)
+        $('#main').append(taskHtml)
+      })
+      $('.tooltipped').tooltip({delay: 50})
+    })
+  })
 }
 
 const bindShowListeners = () => {
