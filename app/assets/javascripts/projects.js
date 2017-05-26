@@ -32,16 +32,9 @@ Project.prototype.formatDueDate = function() {
 
 Project.prototype.formatTasks = function(task) {
 
-  let taskDueDate
-    if (task.is_past_due_date){
-      taskDueDate = `<p class="left red-text" style="margin: 0">${task.due_date}</p><br>`
-    } else {
-      taskDueDate = `<p class="left" style="margin: 0">${task.due_date}</p><br>`
-    }
-
   let username = task.user ? `<p><strong>Assigned to:</strong> ${task.user}</p>` : ''
 
-  let taskFormat = `
+  return `
   <div class="card-panel hoverable center-align">
     ${taskIcon(task)}
     <a href="/projects/${task.project_id}/tasks/${task.id}/edit">
@@ -49,13 +42,12 @@ Project.prototype.formatTasks = function(task) {
       <p>${task.content}</p>
       ${username}
       <small class="left"><b>Due Date</b></small><br>
-      ${taskDueDate}
+      ${taskDueDate(task)}
       <a class="right btn-flat-small waves-effect waves-red" data-confirm="Are you sure you want to delete ${task.title}?" rel="nofollow" data-method="delete" href="/projects/${task.project_id}/tasks/${task.id}">
         <i class="material-icons">delete</i>
       </a><br>
     </a>`
 
-  return taskFormat
 }
 
 Project.prototype.formatIndex = function() {
@@ -174,6 +166,14 @@ const taskIcon = task => {
         </a><br>`
     } else {
       return ''
+    }
+}
+
+const taskDueDate = task => {
+    if (task.is_past_due_date){
+      return `<p class="left red-text" style="margin: 0">${task.due_date}</p><br>`
+    } else {
+      return `<p class="left" style="margin: 0">${task.due_date}</p><br>`
     }
 }
 
