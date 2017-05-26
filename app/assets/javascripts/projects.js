@@ -69,19 +69,16 @@ Project.prototype.formatIndex = function() {
 
 Project.prototype.formatShow = function() {
 
-  let projectDetails = `
-    <div class="center-align">
-    <h3 class="truncate">
-      ${this.title}
-    </h3>
-
-    <h5>
-      ${this.description}
-    </h5>`
-
-  let projectShowHtml = `
+  return `
     ${completedIcon(this)}
-    ${projectDetails}
+    <div class="center-align">
+      <h3 class="truncate">
+        ${this.title}
+      </h3>
+
+      <h5>
+        ${this.description}
+      </h5>
     <p class="left-align">
       <strong>Due date</strong><br>
       ${this.formatDueDate()}
@@ -126,7 +123,6 @@ Project.prototype.formatShow = function() {
     </ul>
   </div>
   `
-  return projectShowHtml
 }
 
 //// HELPER FUNCTIONS ////
