@@ -177,6 +177,18 @@ const completedIcon = project => {
     }
 }
 
+const appendProject = data => {
+  $('#main').html('')
+  let project = new Project(data)
+  let projectShowHtml = project.formatShow()
+  $('#main').append(projectShowHtml)
+  $.each(project.tasks, (idx,task) => {
+    let taskHtml = project.formatTasks(task)
+    $('#main').append(taskHtml)
+  })
+  $('.tooltipped').tooltip({delay: 50})
+}
+
 //// EVENT LISTENERS ////
 
 const bindClickHandlers = () => {
@@ -200,15 +212,7 @@ const bindClickHandlers = () => {
     let id = e.currentTarget.getAttribute('project')
     history.pushState(null, null, `/projects/${id}`)
     $.post(e.currentTarget.action, $(e.currentTarget).serialize(), resp => {
-      $('#main').html('')
-      let project = new Project(resp)
-      let projectShowHtml = project.formatShow()
-      $('#main').append(projectShowHtml)
-      $.each(project.tasks, (idx,task) => {
-        let taskHtml = project.formatTasks(task)
-        $('#main').append(taskHtml)
-      })
-      $('.tooltipped').tooltip({delay: 50})
+      appendProject(resp)
     })
   })
 }
@@ -219,15 +223,7 @@ const bindShowListeners = () => {
     let id = e.currentTarget.id
     history.pushState(null, null, `/projects/${id}`)
     $.get('/projects/' + id + '.json', val => {
-      $('#main').html('')
-      let project = new Project(val)
-      let projectShowHtml = project.formatShow()
-      $('#main').append(projectShowHtml)
-      $.each(project.tasks, (idx,task) => {
-        let taskHtml = project.formatTasks(task)
-        $('#main').append(taskHtml)
-      })
-      $('.tooltipped').tooltip({delay: 50})
+      appendProject(val)
     })
   })
 }
