@@ -189,9 +189,9 @@ const bindClickHandlers = () => {
 
   $('#new_task').on('submit', e => {
     e.preventDefault()
-    let id = e.currentTarget.id
+    let id = e.currentTarget.getAttribute('project')
     history.pushState(null, null, `/projects/${id}`)
-    $.post(e.currentTarget.action, $(e.target).serialize(), resp => {
+    $.post(e.currentTarget.action, $(e.currentTarget).serialize(), resp => {
       $('#main').html('')
       let project = new Project(resp)
       let projectShowHtml = project.formatShow()
