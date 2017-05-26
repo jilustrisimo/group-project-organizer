@@ -68,12 +68,7 @@ Project.prototype.formatIndex = function() {
 }
 
 Project.prototype.formatShow = function() {
-  let completedIcon
-    if (this.isCompleted) {
-      completedIcon = `<a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${this.updatedAt.format('dddd, D MMMM YYYY')}</a>
-      <br>`
-    } else { completedIcon = ''}
-  
+
   let projectDetails = `
     <div class="center-align">
     <h3 class="truncate">
@@ -85,7 +80,7 @@ Project.prototype.formatShow = function() {
     </h5>`
 
   let projectShowHtml = `
-    ${completedIcon}
+    ${completedIcon(this)}
     ${projectDetails}
     <p class="left-align">
       <strong>Due date</strong><br>
@@ -174,6 +169,15 @@ const taskDueDate = task => {
       return `<p class="left red-text" style="margin: 0">${task.due_date}</p><br>`
     } else {
       return `<p class="left" style="margin: 0">${task.due_date}</p><br>`
+    }
+}
+
+const completedIcon = project => {
+    if (project.isCompleted) {
+      return `<a href="#" class="teal-text bold left"><i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${project.updatedAt.format('dddd, D MMMM YYYY')}</a>
+      <br>`
+    } else { 
+      return ''
     }
 }
 
