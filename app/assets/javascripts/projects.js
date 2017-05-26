@@ -74,21 +74,10 @@ Project.prototype.formatTasks = function(task) {
 }
 
 Project.prototype.formatIndex = function() {
-  let icon
-    if (this.isCompleted){
-      icon = `<a href="#" class="teal-text bold left">
-                <i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${this.updatedAt.format('dddd, D MMMM YYYY')}
-              </a> <br>`
-    } else if (this.teamMember){
-      icon = `<i class="material-icons teal-text">lock_open</i>`
-    } else {
-      icon = `<a href="/project_teams?project_id=${this.id}" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
-      <br>`
-    }
 
-  let projectHtml = `
+  return `
     <div class="card-panel hoverable">
-      ${icon}
+      ${indexIcon(this)}
       <a href="/projects/${this.id}" class="show" id="${this.id}">
         <div class="center-align">
           <h3 class="break truncate"><b>${this.title}</b></h3>
@@ -99,7 +88,6 @@ Project.prototype.formatIndex = function() {
       </a>
     </div>
   `
-  return projectHtml
 }
 
 Project.prototype.formatShow = function() {
@@ -167,6 +155,21 @@ Project.prototype.formatShow = function() {
   </div>
   `
   return projectShowHtml
+}
+
+//// HELPER FUNCTIONS ////
+
+const indexIcon = project => {
+    if (project.isCompleted){
+      return `<a href="#" class="teal-text bold left">
+                <i class="material-icons teal-text">done_all</i> <strong>Project Completed:</strong> ${project.updatedAt.format('dddd, D MMMM YYYY')}
+              </a> <br>`
+    } else if (project.teamMember){
+      return `<i class="material-icons teal-text">lock_open</i>`
+    } else {
+      return `<a href="/project_teams?project_id=${project.id}" data-method="post" class="btn-small tooltipped teal accent-4 white-text left" data-tooltip="join project team" data-position="top"><i class="material-icons">add</i></a>
+      <br>`
+    }
 }
 
 //// EVENT LISTENERS ////
