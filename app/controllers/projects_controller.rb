@@ -5,15 +5,15 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.ordered
     respond_to do |f|
+      f.json { render json: @projects }
       f.html
-      f.json { render json: @projects}
     end
   end
 
   def show
     respond_to do |f|
+      f.json { render json: @project }
       f.html
-      f.json { render json: @project}
     end
   end
 
