@@ -4,17 +4,11 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.ordered
-    respond_to do |f|
-      f.json { render json: @projects }
-      f.html
-    end
+    render json: @projects
   end
 
   def show
-    respond_to do |f|
-      f.json { render json: @project }
-      f.html
-    end
+    render json: @project
   end
 
   def new
